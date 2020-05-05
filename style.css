@@ -15,3 +15,18 @@
         color: aliceblue;
     }
 }
+
+
+nav{
+    width: 100%;
+    background-color: black;
+}
+li{
+    width: 25%;
+    background-color: aqua;
+    border: black solid 1px;
+}
+
+
+
+
