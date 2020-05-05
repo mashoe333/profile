@@ -1,3 +1,17 @@
-p{
-    color: aliceblue;
+/* style */
+*{
+    box-sizing: border-box;
+}
+/* PC向け */
+@media (max-width: 1020px) and (min-width: 768px) {
+    p{
+        color: brown;
+    } 
+}
+
+/* SP向け */
+@media (max-width: 767px) { 
+    p{
+        color: aliceblue;
+    }
 }
