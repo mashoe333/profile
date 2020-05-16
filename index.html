@@ -95,23 +95,28 @@
             <animate attributeName="cx" calcMode="spline" keyTimes="0;1" keySplines="0.0 0.0 0.0 1.0" from="190" to="10" begin="0s" dur="2s" repeatCount="indefinite"/>
         </circle>
     </svg>
+    <style>
+        #svg1{
+            z-index: 100;
+            position:absolute; 
+            top:0;
+            left: 0;
+            width: 100vw;
+            height: auto;
+            min-height: 100vh;
+        }
+    </style>
     <script>
         const winW = window.innerWidth;
         const winH = window.innerHeight;
         const svg1 = document.getElementById("svg1");
         alert("winH:" + winH);
         alert("winW:" + winW);
+        alert("svg1H:" + svg1.style.height);
+        alert("svg1W:" + svg1.style.width);
         // svg1.style.width = winW;
         // svg1.style.height = winH;
     </script>
-    <style>
-        #svg1{
-            z-index: 100;
-            position:absolute; 
-            top:0;
-
-        }
-    </style>
 </body>
 <footer>
 
