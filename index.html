@@ -98,7 +98,7 @@
     <style>
         #svg1{
             z-index: 100;
-            position:absolute; 
+            position:fixed; 
             top:0;
             left: 0;
             width: 100vw;
@@ -125,7 +125,9 @@
         const svg1 = document.getElementById("svg1");
         alert("winH:" + winH);
         alert("winW:" + winW);
-        alert("version2")
+        alert("window.screenX:" + window.screenX);
+        alert("window.screenY:" + window.screenY);
+        alert("version3");
         // svg1.style.width = winW;
         // svg1.style.height = winH;
     </script>
