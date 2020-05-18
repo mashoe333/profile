@@ -75,7 +75,7 @@
         /* global */
         const winH = window.innerHeight; // 画面サイズ
         let charTop = $("#top").offset().top;
-        const tranY = 100; // 文字がずれていくベースの数字
+        const tranY = 70; // 文字がずれていくベースの数字
         let charMinY = charTop - winH*.6;
         let charMaxY = charTop - winH*.1;
 
@@ -94,13 +94,10 @@
             child.each(function(i,e){
                 if(charMinY < currentY && currentY < charMaxY){
                     var maxTranY = tranY*(1-$(e).attr("data-py"));
-                    var per = (currentY-charMinY/charMaxY-charMinY)/100;
-                    
-                    if(per < 0){
-                        per = 0;
-                    }
+                    var per = ((currentY-charMinY)/(charMaxY-charMinY));
                     console.log("per:" + per);
                     $(e).css("transform", "translateY(" + Math.floor(maxTranY*per)*(-1) + "px)");
+                    $(e).css("opacity", 1-per);
                 }
                 console.log("translateY" + $(e).css("transform"));
                 console.log("currentY-charMinY" + currentY-charMinY);
