@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>himatsubushi</title>
+    <link rel="stylesheet" href="maxScreeen.css">
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <aside> 
+        <nav>
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+        </nav>
+    </aside>
+    <!-- メイン -->
+    <main>
+        <h1>himatsubushi</h1>
+        <div>暇つぶし1</div>
+        <div>暇つぶし2</div>
+        <div>暇つぶし3</div>
+        <div>暇つぶし4</div>
+        <div>暇つぶし5</div>
+        <div>暇つぶし6</div>
+        <div>暇つぶし7</div>
+        <div>暇つぶし8</div>
+        <div>暇つぶし9</div>
+        <div>暇つぶし10</div>
+        <div>暇つぶし11</div>
+        <div id="top">
+            <i data-py="0.3">W</i>
+            <i data-py="0.6">e</i>
+            <i data-py="0.1">l</i>
+            <i data-py="0">c</i>
+            <i data-py="0.9">o</i>
+            <i data-py="0.4">m</i>
+            <i data-py="0.3">e</i>
+            <i data-py="0.3">&nbsp;</i>
+            <i data-py="0.2">P</i>
+            <i data-py="0.8">a</i>
+            <i data-py="0.6">g</i>
+            <i data-py="0.5">e</i>
+        </div>
+        <div>暇つぶし12</div>
+        <div>暇つぶし13</div>
+        <div>暇つぶし14</div>
+        <div>暇つぶし15<div>
+        <div>暇つぶし16</div>
+        <div>暇つぶし17</div>
+        <div>暇つぶし18</div>
+        <div>暇つぶし19</div>
+        <div>暇つぶし20</div>
+        <div>暇つぶし1</div>
+        <div>暇つぶし1</div>
+        <div>暇つぶし1</div>
+        <div>暇つぶし1</div>
+        <div>暇つぶし1</div>
+        <div>暇つぶし1</div>
+    </main>
+    <!-- フッター -->
+    <footer>
+        <ul>
+            <li>XXX</li>
+            <li>YYY</li>
+            <li>ZZZ</li>
+            <li>ABC</li>
+            <li>DEF</li>
+        </ul>
+    </footer>
+    <script>
+        /* global */
+        const winH = window.innerHeight; // 画面サイズ
+        let charTop = $("#top").offset().top;
+        const tranY = 100; // 文字がずれていくベースの数字
+        let charMinY = charTop - winH*.6;
+        let charMaxY = charTop - winH*.1;
+
+        // 画面表示完了後
+        $(window).on('load', function() {
+            charTop = $("#top").offset().top;
+            charMinY = Math.floor(charTop - winH*.6);
+            charMaxY = Math.floor(charTop - winH*.1);
+        });
+
+        /* scroll effect */
+        $(window).scroll(function() {
+            var child = $("#top").children("i");
+            var currentY = Math.floor(window.scrollY); // スクロール位置
+            
+            child.each(function(i,e){
+                if(charMinY < currentY && currentY < charMaxY){
+                    var maxTranY = tranY*(1-$(e).attr("data-py"));
+                    var per = (currentY-charMinY/charMaxY-charMinY)/100;
+                    
+                    if(per < 0){
+                        per = 0;
+                    }
+                    console.log("per:" + per);
+                    $(e).css("transform", "translateY(" + Math.floor(maxTranY*per)*(-1) + "px)");
+                }
+                console.log("translateY" + $(e).css("transform"));
+                console.log("currentY-charMinY" + currentY-charMinY);
+                console.log("charMaxY-charMinY" + charMaxY-charMinY);
+                
+            })
+            console.log("charMinY:" + charMinY);
+            console.log("charMaxY:" + charMaxY);
+            console.log("currentY:" + currentY);
+            console.log("winH:" + window.innerHeight);
+            console.log("charTop:" + charTop);
+            
+            
+
+            
+
+            
+        });
+        /**
+         * i:index
+         * e:elemnt
+        */
+    </script>
+    <style>
+        main{
+            height: 500%;
+        }
+        main div{
+            margin: 10% 0;
+            text-align: center;
+        }
+        i{
+            display: inline-block;
+        }
+    </style>
+</body>
+</html>
