@@ -6,14 +6,14 @@
     <title>himatsubushi</title>
     <link rel="stylesheet" href="maxScreeen.css">
 </head>
-<body>
+<body class="body">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <aside> 
         <nav>
             <ul>
-                <li>a</li>
-                <li>b</li>
-                <li>c</li>
+                <li>a<br>d<br>rrr</li>
+                <li><br>d<br></li>
+                <li><br>c<br></li>
             </ul>
         </nav>
     </aside>
@@ -22,7 +22,7 @@
         <h1>himatsubushi</h1>
         <div>暇つぶし1</div>
         <div>暇つぶし2</div>
-        <div>暇つぶし3</div>
+        <div class="hima3">暇つぶし3</div>
         <div>暇つぶし4</div>
         <div>暇つぶし5</div>
         <div>暇つぶし6</div>
@@ -45,7 +45,7 @@
             <i data-py="0.6">g</i>
             <i data-py="0.5">e</i>
         </div>
-        <div>暇つぶし12</div>
+        <div class="hima12">暇つぶし12</div>
         <div>暇つぶし13</div>
         <div>暇つぶし14</div>
         <div>暇つぶし15<div>
@@ -54,12 +54,6 @@
         <div>暇つぶし18</div>
         <div>暇つぶし19</div>
         <div>暇つぶし20</div>
-        <div>暇つぶし1</div>
-        <div>暇つぶし1</div>
-        <div>暇つぶし1</div>
-        <div>暇つぶし1</div>
-        <div>暇つぶし1</div>
-        <div>暇つぶし1</div>
     </main>
     <!-- フッター -->
     <footer>
@@ -72,65 +66,87 @@
         </ul>
     </footer>
     <script>
-        /* global */
-        const winH = window.innerHeight; // 画面サイズ
-        let charTop = $("#top").offset().top;
-        const tranY = 70; // 文字がずれていくベースの数字
-        let charMinY = charTop - winH*.6;
-        let charMaxY = charTop - winH*.1;
-
-        // 画面表示完了後
+        /******************* global *******************/
+        const winH = window.innerHeight; // 画面の高さ
+        const winW = window.innerWidth; // 画面の高さ
+        const charTranY = 70; // 文字がずれていくベースの数字(px)
+        const animateChar = $("#top").children("i"); // スクロールのアニメーション対象
+        let charTop; // onloadで初期化
+        let charMinY; // onloadで初期化
+        let charMaxY; // onloadで初期化
+        let baseScrollPoint; // スクロール基準位置
+        let scrollFlg = true; // スクロールの背景色変更用フラグ（連続で同じ処理をしないように）
+        
+        // 画面表示完了後の値で初期化
         $(window).on('load', function() {
             charTop = $("#top").offset().top;
             charMinY = Math.floor(charTop - winH*.6);
             charMaxY = Math.floor(charTop - winH*.1);
         });
 
-        /* scroll effect */
+        /******************* ColorObject *******************/
+        /* スクロールで背景色を徐々に変更しようと試みるも、cssのtransitionで解決したから不要 */
+        // // コンストラクタ
+        // const ColorObj = function(r,g,b){
+        //     this.red = r,
+        //     this.green = g,
+        //     this.blue = b
+        // };
+        // // 色の比較メソッド
+        // const hikaku = function(ColorObj1, ColorObj2){
+        //     const sabunRed = ColorObj1.red - ColorObj2.red;
+        //     const sabunGreen = ColorObj1.green - ColorObj2.green;
+        //     const sabunBlue = ColorObj1.blue - ColorObj2.blue;
+        //     return new ColorObj(sabunRed, sabunGreen, sabunBlue);
+        // };
+
+        // const backColorGoal = new ColorObj("175", "238", "238");
+        // let backColorStart = new ColorObj("255", "228", "225");
+        // let sabun = hikaku(backColorGoal,backColorStart);
+        // let sabun1 = hikaku(backColorGoal,backColorStart);
+        // console.log("sabun:" + sabun.red);
+        /******************* ColorObject *******************/
+
+        /******************* scroll event *******************/
         $(window).scroll(function() {
-            var child = $("#top").children("i");
-            var currentY = Math.floor(window.scrollY); // スクロール位置
+            const currentY = Math.floor(window.scrollY); // スクロール位置
             
-            child.each(function(i,e){
-                if(charMinY < currentY && currentY < charMaxY){
-                    var maxTranY = tranY*(1-$(e).attr("data-py"));
+            // スクロールとともに文字がずれる疑似アニメーション
+            if(charMinY < currentY && currentY < charMaxY){
+                animateChar.each(function(i,e){
+                    var maxTranY = charTranY*$(e).attr("data-py");
                     var per = ((currentY-charMinY)/(charMaxY-charMinY));
-                    console.log("per:" + per);
                     $(e).css("transform", "translateY(" + Math.floor(maxTranY*per)*(-1) + "px)");
                     $(e).css("opacity", 1-per);
+                })
+            }
+            // 一定の位置で背景色を変化
+            if(baseScrollPoint < currentY){
+                // 基準位置の方が低い→スクロールダウン時
+                if(charTop < currentY && scrollFlg){
+                    // charTopの位置を超えていたら
+                    $("body").removeClass("changeBgColorScrollUp");
+                    $("body").addClass("changeBgColorScrollDown");
+                    scrollFlg = false;
                 }
-                console.log("translateY" + $(e).css("transform"));
-                console.log("currentY-charMinY" + currentY-charMinY);
-                console.log("charMaxY-charMinY" + charMaxY-charMinY);
-                
-            })
-            console.log("charMinY:" + charMinY);
-            console.log("charMaxY:" + charMaxY);
-            console.log("currentY:" + currentY);
-            console.log("winH:" + window.innerHeight);
-            console.log("charTop:" + charTop);
-            
-            
+            }else{
+                // 基準位置の方が高い→スクロールアップ時
+                if(charTop > currentY && !scrollFlg){
+                    // charTopの位置を超えていなかったら
+                    $("body").removeClass("changeBgColorScrollDown");
+                    $("body").addClass("changeBgColorScrollUp");
+                    scrollFlg = true;
+                }
 
-            
-
-            
+            }
+            // スクロール基準位置を変更
+            baseScrollPoint = currentY;
         });
-        /**
-         * i:index
-         * e:elemnt
-        */
     </script>
     <style>
-        main{
-            height: 500%;
-        }
         main div{
             margin: 10% 0;
             text-align: center;
-        }
-        i{
-            display: inline-block;
         }
     </style>
 </body>
