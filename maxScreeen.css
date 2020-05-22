@@ -36,16 +36,26 @@ i{
     display: inline-block;
 }
 /* CustomeStyle */
-/* aside li{
-    width: calc(100%/3);
-    text-align: center;
-    border: 1px solid black;
+#op-content{
+    background-color: blanchedalmond;
 }
-footer li{
-    width: 20%;
-    text-align: center;
-    border: 1px solid black;
-} */
+#opening,#ending{
+    width: 100vw;
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  
+    /* 左右中央寄せ */
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  
+    /* 上下中央寄せ */
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
 /* EventStyle */
 .changeBgColorScrollUp{
     transition: all 2s;
