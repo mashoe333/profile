@@ -1,4 +1,4 @@
-/* reset */
+/******************* reset *******************/
 abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, cite, code, dd, del, details, dfn, div, dl, dt, em, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, p, pre, q, samp, section, small, span, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, var, video {
     margin: 0;
     padding: 0;
@@ -8,7 +8,7 @@ abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, cite
     vertical-align: baseline;
     background: 0 0;
 }
-/* BaseStyle */
+/******************* BaseStyle *******************/
 *{
     box-sizing: border-box;
     margin: 0;
@@ -35,11 +35,8 @@ li{
 i{
     display: inline-block;
 }
-/* CustomeStyle */
-#op-content{
-    background-color: blanchedalmond;
-}
-#opening,#ending{
+/******************* CustomeStyle *******************/
+#opening,#ending,#op-space{
     width: 100vw;
     height: 100vh;
     display: -webkit-box;
@@ -56,7 +53,11 @@ i{
     -ms-flex-align: center;
     align-items: center;
 }
-/* EventStyle */
+#op-content{
+    background-color: ghostwhite;
+}
+
+/******************* EventStyle *******************/
 .changeBgColorScrollUp{
     transition: all 2s;
     background-color: #e0ffff;   
@@ -65,9 +66,13 @@ i{
 .changeBgColorScrollDown{   
     transition: all 2s;
     background-color: black;
-    color: white;   
+    color: #ffffff;   
 }
-/*  animation */
+.scrollStop{
+    position: fixed;
+    overflow-y:scroll;
+}
+/*******************  animation *******************/
 @keyframes changeBgcolorUp {
     0% {
         background-color: #f5f5f5;

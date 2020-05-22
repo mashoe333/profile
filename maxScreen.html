@@ -6,18 +6,20 @@
     <title>himatsubushi</title>
     <link rel="stylesheet" href="maxScreeen.css">
 </head>
-<body class="body">
+<body class="scrollStop">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- オープニング -->
     <div id="opening">
         <div id="op-content">
-            <div id="op-message">
-                Welcome Page
+            <div id="op-message" onclick="opening()" >
+                start
             </div>
         </div>
+        <div id="welcome">Welcome Page</div>
     </div>
+    <div id="op-space"></div>
     <!-- サイドバー -->
-    <aside> 
+    <aside id="header"> 
         <nav>
             <ul>
                 <li>a<br>d<br>rrr</li>
@@ -78,7 +80,7 @@
     <div id="ending">
         <div id="ed-content">
             <div id="ed-message">
-                GoodBye
+                Good-Bye
             </div>
         </div>
     </div>
@@ -86,21 +88,46 @@
         /******************* global *******************/
         const winH = window.innerHeight; // 画面の高さ
         const winW = window.innerWidth; // 画面の高さ
-        const charTranY = 70; // 文字がずれていくベースの数字(px)
+        const charTranY = 120; // 文字がずれていくベースの数字(px)
         const animateChar = $("#top").children("i"); // スクロールのアニメーション対象
         let charTop; // onloadで初期化
         let charMinY; // onloadで初期化
         let charMaxY; // onloadで初期化
         let baseScrollPoint; // スクロール基準位置
         let scrollFlg = true; // スクロールの背景色変更用フラグ（連続で同じ処理をしないように）
-        
         // 画面表示完了後の値で初期化
         $(window).on('load', function() {
             charTop = $("#top").offset().top;
-            charMinY = Math.floor(charTop - winH*.6);
+            charMinY = Math.floor(charTop - winH*.7);
             charMaxY = Math.floor(charTop - winH*.1);
         });
+        /******************* function *******************/
+        // オープニングアニメーション
+        const opening = function(){
+            // 文字のサイズをアップ
+            $("#welcome").animate({
+                fontSize:"20px"
+            },1000,"linear");
+            // 背景色を変更→これがanimateだとできないからcssの@keyframeでaddClass？
+            $("#welcome").delay(1000).animate({
+                color:"#ffffff"
+            },1000,"linear");
+            $(".scrollStop").delay(2000).removeClass("scrollStop");
+            // スクロールダウン
+            $("html,body").delay(2000).animate({
+                scrollTop:$("#header").offset().top
+            },2000,"swing",openingEnd);
 
+        }
+        // オープニングアニメーション完了後に呼び出す
+        // オープニング部分の削除と初期化
+        const openingEnd = function(){
+            $("#opening").remove();
+            $("#op-space").remove();
+            charTop = $("#top").offset().top;
+            charMinY = Math.floor(charTop - winH*.7);
+            charMaxY = Math.floor(charTop - winH*.1);
+        }
         /******************* ColorObject *******************/
         /* スクロールで背景色を徐々に変更しようと試みるも、cssのtransitionで解決したから不要 */
         // // コンストラクタ
