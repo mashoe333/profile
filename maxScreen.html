@@ -11,13 +11,24 @@
     <!-- オープニング -->
     <div id="opening">
         <div id="op-content">
-            <div id="op-message" onclick="opening()" >
+            <div id="op-message">
                 start
             </div>
         </div>
         <div id="welcome">Welcome Page</div>
     </div>
     <div id="op-space"></div>
+    <!-- <div id="opening-area">
+        <div id="opening">
+            <div id="op-content">
+                <div id="op-message">
+                    start
+                </div>
+            </div>
+            <div id="welcome">Welcome Page</div>
+        </div>
+        <div id="op-space"></div>
+    </div> -->
     <!-- サイドバー -->
     <aside id="header"> 
         <nav>
@@ -94,7 +105,7 @@
         let charMinY; // onloadで初期化
         let charMaxY; // onloadで初期化
         let baseScrollPoint; // スクロール基準位置
-        let scrollFlg = true; // スクロールの背景色変更用フラグ（連続で同じ処理をしないように）
+        let scrollDirFlg = true; // スクロールの背景色変更用フラグ（連続で同じ処理をしないように）
         // 画面表示完了後の値で初期化
         $(window).on('load', function() {
             charTop = $("#top").offset().top;
@@ -102,32 +113,46 @@
             charMaxY = Math.floor(charTop - winH*.1);
         });
         /******************* function *******************/
+        $("#op-message").on("click",function(){
+            opening();
+        });
+        $(".hima12").on("click",function(){
+            $(".hima3").remove()
+        });
+        
         // オープニングアニメーション
         const opening = function(){
             // 文字のサイズをアップ
             $("#welcome").animate({
                 fontSize:"20px"
             },1000,"linear");
-            // 背景色を変更→これがanimateだとできないからcssの@keyframeでaddClass？
-            $("#welcome").delay(1000).animate({
-                color:"#ffffff"
-            },1000,"linear");
-            $(".scrollStop").delay(2000).removeClass("scrollStop");
-            // スクロールダウン
-            $("html,body").delay(2000).animate({
-                scrollTop:$("#header").offset().top
-            },2000,"swing",openingEnd);
 
-        }
-        // オープニングアニメーション完了後に呼び出す
-        // オープニング部分の削除と初期化
+            // 背景色を変更→これがanimateだとできないからcssの@keyframeでaddClass？
+            // $("#welcome").delay(1000).animate({
+            //     color:"#ffffff"
+            // },1000,"linear");
+
+            $(".scrollStop").delay(1000).removeClass("scrollStop");
+
+            // スクロールダウン
+            setTimeout(function(){
+                $("html,body").animate({
+                    scrollTop:$("#header").offset().top
+                },2000,"swing").promise().done(openingEnd);
+            },1000);
+        };
+        // オープニングアニメーション完了後にもろもろ初期化
         const openingEnd = function(){
+            $("body").addClass("scrollStop"); // IE,iOS対応
+            // オープニング部分の削除
             $("#opening").remove();
             $("#op-space").remove();
+            // スクロールアニメーションの初期化
             charTop = $("#top").offset().top;
             charMinY = Math.floor(charTop - winH*.7);
             charMaxY = Math.floor(charTop - winH*.1);
-        }
+            $(".scrollStop").removeClass("scrollStop"); // IE,iOS対応
+        };
         /******************* ColorObject *******************/
         /* スクロールで背景色を徐々に変更しようと試みるも、cssのtransitionで解決したから不要 */
         // // コンストラクタ
@@ -167,19 +192,19 @@
             // 一定の位置で背景色を変化
             if(baseScrollPoint < currentY){
                 // 基準位置の方が低い→スクロールダウン時
-                if(charTop < currentY && scrollFlg){
+                if(charTop < currentY && scrollDirFlg){
                     // charTopの位置を超えていたら
                     $("body").removeClass("changeBgColorScrollUp");
                     $("body").addClass("changeBgColorScrollDown");
-                    scrollFlg = false;
+                    scrollDirFlg = false;
                 }
             }else{
                 // 基準位置の方が高い→スクロールアップ時
-                if(charTop > currentY && !scrollFlg){
+                if(charTop > currentY && !scrollDirFlg){
                     // charTopの位置を超えていなかったら
                     $("body").removeClass("changeBgColorScrollDown");
                     $("body").addClass("changeBgColorScrollUp");
-                    scrollFlg = true;
+                    scrollDirFlg = true;
                 }
 
             }
