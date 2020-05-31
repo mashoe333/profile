@@ -20,7 +20,8 @@ html,body{
     position: relative;
 }
 body{
-    background-color: #e0ffff;
+    background-color: black;
+    color: white;
 }
 ul{
     list-style: none;
@@ -30,9 +31,12 @@ ul{
 li{
     flex: 1;
     text-align: center;
-    border: 1px solid black;
+    border: 1px solid white;
 }
 i{
+    display: inline-block;
+}
+span{
     display: inline-block;
 }
 /******************* CustomeStyle *******************/
@@ -52,28 +56,106 @@ i{
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    flex-direction: column;
 }
 #op-content{
+    /* background-color: black;
+    border: ghostwhite 1px solid;
+    color: ghostwhite; */
+    text-align: center;
+    padding: 1%;
+    perspective: 500;
+}
+
+/* #op-content:hover{
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    transform: rotateX(90deg);
+} */
+.op-button{
     background-color: ghostwhite;
+    border: ghostwhite 1px solid;
+    color: black;
+    padding: 1%;
+    display: inline-block;
+    position: absolute;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+.op-click{
+    background-color: black;
+    border: ghostwhite 1px solid;
+    color: ghostwhite;
+    padding: 1%;
+    display: inline-block;
+    position: absolute;
+    transform: translateX(-50%);
+    opacity: 1;
+}
+#op-content:hover .op-button{
+    transition: all .5s ease;
+    opacity: 1;
+}
+#op-content:hover .op-click{
+    transition: all .5s ease;
+    opacity: 0;
+}
+/* クリックイベントで付与する用 */
+.neonLightning{
+    animation: neonLightning 1s linear forwards;
+}
+
+
+/* ボタン押下字のアニメーションに変更するからいったん消す */
+/* #op-content:hover{
+    background: none;
+}
+#op-content:hover span{
+    background: none;
+    animation: neonLightning 1s linear forwards;
+}
+#op-content:hover #n2{
+    animation-delay: .2s;
+}
+#op-content:hover #n3{
+    animation-delay: .5s;
+}
+#op-content:hover #n4{
+    animation-delay: .7s;
+}
+#op-content:hover #n5{
+    animation-delay: .9s;
+} */
+.welcome{
+    font-size: 10vw;
+    animation: neonLightning 1s linear infinite;
+}
+#anime{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.anime{
+    display: none;
 }
 
 /******************* EventStyle *******************/
 .changeBgColorScrollUp{
     transition: all 2s;
-    background-color: #e0ffff;   
-    color: black;
+    background-color: black;   
+    color: #fff;
 }
 .changeBgColorScrollDown{   
     transition: all 2s;
-    background-color: black;
-    color: #ffffff;   
+    background-color: #e0ffff;
+    color: #000;   
 }
 .scrollStop{
     position: fixed;
     overflow-y:scroll;
 }
 /*******************  animation *******************/
-@keyframes changeBgcolorUp {
+/* @keyframes changeBgcolorUp {
     0% {
         background-color: #f5f5f5;
     }
@@ -88,4 +170,57 @@ i{
     100% {
         background-color: red;
     }
+} */
+
+/*slide-in down*/
+.slide-in-down{
+    display: inline-block;
+    -webkit-animation: slide-in-down 10s;
+            animation: slide-in-down 10s;
+    -webkit-animation-timing-function: ease;
+            animation-timing-function: ease;
+}
+@-webkit-keyframes slide-in-down{
+    0%
+    {
+        -webkit-transform: translateY(0px);
+    }
+    100%
+    {
+        -webkit-transform: translateY(100vh);
+    }
+}
+@keyframes slide-in-down{
+    0%
+    {
+        transform: translateY(0px);
+    }
+    100%
+    {
+        transform: translateY(100vh);
+    }
+}
+/* ネオンの光アニメーション */
+@keyframes neonLightning {
+	0% {
+		color: #333;
+	}
+	5%, 15%, 25% {
+		color: #fff;
+		text-shadow: 0px 0px 50px cyan;
+	}
+	10%, 20% {
+		color: #333;
+		text-shadow: none;
+	}
+	
+	30% {
+		color: #fff;
+		text-shadow: 0px 0px 50px cyan;
+	}
+	
+	100% {
+		color: #fff;
+		text-shadow: 0px 0px 50px cyan;
+	}
 }

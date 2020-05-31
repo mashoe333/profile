@@ -10,20 +10,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- オープニング -->
     <div id="opening">
-        <div class="welcome">Welcome Page</div>
         <div id="op-content">
-            <div class="op-click">click me</div>
-            <div class="op-button">
-                <span id="n1">s</span>
-                <span id="n2">t</span>
-                <span id="n3">a</span>
-                <span id="n4">r</span>
-                <span id="n5">t</span>
+            <div id="op-message">
+                start
             </div>
         </div>
+        <div id="welcome">Welcome Page</div>
     </div>
-    <div id="op-space"></div>
-    <div id="anime" class="anime">himaaaaaaa</div>
     <!-- サイドバー -->
     <aside id="header"> 
         <nav>
@@ -108,7 +101,7 @@
             charMaxY = Math.floor(charTop - winH*.1);
         });
         /******************* function *******************/
-        $(".op-button").on("click",function(){
+        $("#op-message").on("click",function(){
             opening();
         });
         $(".hima12").on("click",function(){
@@ -118,41 +111,26 @@
         // オープニングアニメーション
         const opening = function(){
             // 文字のサイズをアップ
-            // $(".welcome").animate({
-            //     fontSize:"20vh"
-            // },1000,"linear");
-
-            $(".op-button").css("opacity","1").css("background","none").css("border", "black").css("transition","none");
-            $(".op-click").css("opacity","0").css("transition","none");
-            $(".op-button #n1").addClass("neonLightning");
-            $(".op-button #n2").addClass("neonLightning").css("animation-delay",".2s");
-            $(".op-button #n3").addClass("neonLightning").css("animation-delay",".5s");
-            $(".op-button #n4").addClass("neonLightning").css("animation-delay",".7s");
-            $(".op-button #n5").addClass("neonLightning").css("animation-delay",".9s");
-
-            
-            
-            // 検証
-            // if($("#anime").hasClass("slide-in-down")){
-            //     $("#anime").removeClass("slide-in-down");
-            // }else{
-            //     $("#anime").addClass("slide-in-down");
-            // }
+            $("#welcome").animate({
+                fontSize:"20px"
+            },1000,"linear");
 
             // 背景色を変更→これがanimateだとできないからcssの@keyframeでaddClass？
             // $("#welcome").delay(1000).animate({
             //     color:"#ffffff"
             // },1000,"linear");
 
-            // 以下、一時的コメントアウト
-            $(".scrollStop").delay(4000).removeClass("scrollStop");
+            $(".scrollStop").delay(1000).removeClass("scrollStop");
+            $(".scrollStop").delay(1000).slideUp(1000);
+
+
 
             // スクロールダウン
             setTimeout(function(){
                 $("html,body").animate({
                     scrollTop:$("#header").offset().top
                 },2000,"swing").promise().done(openingEnd);
-            },4000);
+            },1000);
         };
         // オープニングアニメーション完了後にもろもろ初期化
         const openingEnd = function(){
