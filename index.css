@@ -1,0 +1,84 @@
+
+/******************* additional reset *******************/
+a{
+    text-decoration: none;
+}
+a:visited{
+    color: inherit;
+}
+/******************* custome style *******************/
+body{
+    background-image: url(images/background.jpg);
+    background-size: cover;
+    backdrop-filter: grayscale();
+    color: beige;
+}
+main{
+    font-size: 1rem;
+    /* width: 800px; */
+    /* margin: 0 10vw; */
+    min-height: 100vh;
+    text-align: center;
+    display: grid;
+    grid-template:
+        "..... article1 article2 article3 ....." 25vh
+        "..... article4 article5 article6 ....." 25vh
+        "..... article7 article8 article9 ....." 25vh
+        /12.5vw auto auto auto 12.5vw;
+    /* grid-template:
+        "article1 article2 article3"
+        "article4 article5 article6"
+        "article7 article8 article9"; */
+}
+div{
+    border: 1px solid black;
+    width: 25vw;
+    height: 25vh;
+    text-align: center;
+    transition: all .4s;
+    opacity: 0.3;
+    background-color: darkgrey;
+}
+div[class^="art-"] a{
+    width: 100%;
+    height: 100%;
+}
+.art-1{
+    grid-area: article1;
+}
+.art-2{
+    grid-area: article2;
+}
+.art-3{
+    grid-area: article3;
+}
+.art-4{
+    grid-area: article4;
+}
+.art-5{
+    grid-area: article5;
+}
+.art-6{
+    grid-area: article6;
+}
+.art-7{
+    grid-area: article7;
+}
+.art-8{
+    grid-area: article8;
+}
+.art-9{
+    grid-area: article9;
+}
+.target{
+    transition: all .4s;
+}
+div[class^="art-"]:hover{
+    opacity: 0.7;
+
+}
+/* ホバー子要素のaタグ配下にある「target」クラスに対して */
+div[class^="art-"]:hover > a .target{
+    transform: scale(1.2, 1) translateY(10px);
+}
+

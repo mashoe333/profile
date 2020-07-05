@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>single page</title>
+    <link rel="stylesheet" href="base.css">
+</head>
+<body>
+    <style>
+        .title{
+            margin: 10vh 0;
+        }
+        .singlePage{
+            width: 100vw;
+            height: 100vh;
+        }
+        .cotentWrapper{
+            /* display: flex; */
+            width: 100%;
+        }
+        .content{
+            display: grid;
+            width: 100%;
+            /* grid-template: 
+                "content_one -----" 80px
+                "line_one content_two" 1fr
+                "----- line_two" 50px
+                / 100px 1fr; */
+            grid-template: 25vh 25vh 25vh/ 1fr 1fr;
+        }
+        /* .content-one{
+            grid-area: content_one;
+        }
+        .content-two{
+            grid-area: content_two;
+        }
+        .line-one{
+            grid-area: line_one;
+        }
+        .line-two{
+            grid-area: line_two;
+        } */
+        .t-center{
+            text-align: center;
+        }
+        .dis-inBlock{
+            /* display: inline-block; */
+        }
+        /*  */
+        h1{
+            font-family:'Courier New', Courier, monospace;
+            font-size: 2rem;
+        }
+        .fam{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <header>
+        <div>● aurora arc</div>
+        <div>● aurora ark</div>
+    </header>
+
+    <main>
+        <div class="title">
+            <h1>BUMP OF CHICKIN</h1>
+            <div class="t-center">New Album and Live Tour 2019</div>
+            <div class="t-center">Special Site</div>
+        </div>
+        <div class="singlePage">
+            <div class="cotentWrapper">
+                <div class="content">
+                    <div class="content-one t-center">
+                        <div class="fam">aurora<br>arc</div>
+                        <div>BUNP OF CHICKIN<br>New Aibum<br>2019.7.10 wed Release</div>
+                    </div>
+
+                    <div class="space-one t-center">space</div>
+
+                    <div class="line-one t-center">line</div>
+
+                    <div class="content-two t-center">
+                        <div>aurora<br>ark</div>
+                        <div>BUNP OF CHICKIN<br>TOUR 2019<br>2019.7.12 fri Start</div>
+                    </div>
+
+                    <div class="line-two t-center">line</div>
+
+                    <div class="space-two t-center">space</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div>- topics</div>
+    </footer>
+    
+	<!-- 背景素材 -->
+	<div class="underlay-photo"></div>
+	<div class="underlay-black"></div>
+</body>
+</html>

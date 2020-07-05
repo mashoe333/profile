@@ -1,0 +1,373 @@
+/******************* BaseStyle *******************/
+html,body{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+body{
+    background-color: black;
+    color: white;
+}
+ul{
+    list-style: none;
+    display: flex;
+    width: 100%;
+}
+li{
+    flex: 1;
+    text-align: center;
+    border: 1px solid white;
+}
+i{
+    display: inline-block;
+}
+span{
+    display: inline-block;
+}
+/******************* CustomeStyle *******************/
+:root {
+    --menuAnimateTime: .4s;
+  }
+/* opening */
+#opening,#ending,#op-space{
+    width: 100vw;
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  
+    /* 左右中央寄せ */
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  
+    /* 上下中央寄せ */
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+#op-content{
+    text-align: center;
+    padding: 1%;
+    perspective: 500;
+}
+.op-button{
+    background-color: ghostwhite;
+    border: ghostwhite 1px solid;
+    color: black;
+    padding: 1%;
+    display: inline-block;
+    position: absolute;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+.op-click{
+    background-color: black;
+    border: ghostwhite 1px solid;
+    color: ghostwhite;
+    padding: 1%;
+    display: inline-block;
+    position: absolute;
+    transform: translateX(-50%);
+    opacity: 1;
+}
+#op-content:hover .op-button{
+    transition: all .5s ease;
+    opacity: 1;
+}
+#op-content:hover .op-click{
+    transition: all .5s ease;
+    opacity: 0;
+}
+
+.welcome{
+    font-size: 10vw;
+    transform: translateY(-10vh);
+    animation: neonLightning 1s linear infinite;
+}
+/* menu */
+header{
+    position: fixed;
+    z-index: 999;
+    top: 1vh;
+    right: 1vw;
+}
+.menu,
+.menu span {
+  display: inline-block;
+  transition: all var(--menuAnimateTime);
+}
+.menu {
+  position: relative;
+  width: 10vw;
+  height: 5vh;
+  /* 大きすぎるとかっこ悪いから指定 */
+  /* 後日ここは細かく調整する */
+  /* max-width: 50px;
+  max-height: 44px; */
+}
+@media screen and (min-width:768px) { 
+    /*　画面サイズが768pxからはここを読み込む　*/
+    .menu {
+        width: 5vw;
+    }
+
+}
+.menu span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1vh;
+  background-color: #fff;
+  /* border-radius: 1vh; */
+}
+.menu span:nth-of-type(1) {
+  top: 0;
+}
+.menu span:nth-of-type(2) {
+  top: 2vh;
+}
+.menu span:nth-of-type(3) {
+  bottom: 0;
+}
+
+/* sideBar */
+aside{
+    height: 100vh;
+    /* height: 0px; */
+    width: 100vw;
+    background-color: cadetblue;
+    z-index: 998;
+    position: absolute;
+    left: 0;
+    top: 0;
+    /* visibility: hidden;
+    display: none; */
+    /* overflow: hidden; */
+    /* -webkit-transform: translateY(100vh);
+    transform: translateY(100vh); */
+    transition: all var(--menuAnimateTime);
+}
+menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 70;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    pointer-events: none;
+    color: #fff;
+}
+menu div{
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+span.kenSpan1{
+    z-index: 0;
+    background: #9e8a90;
+    position: absolute;
+    top: 0;
+    display: block;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    transform: translate3d(0,100vh,0);
+}
+span.kenSpan2{
+    z-index: 0;
+    background: #2c2c2c;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    transform: translate3d(0,100vh,0);
+}
+/* main */
+.topPage{
+    width: 100vw;
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.flexInline{
+    flex-direction: row;
+
+}
+.scrollWelcome{
+    font-size: 5vw;
+    text-align: start;
+    margin-left: 5vw;
+}
+/* Util */
+.hidden{
+    visibility: hidden;
+    display: none;
+}
+.scrollStop{
+    position: fixed;
+    overflow-y:scroll;
+}
+.tran04s{
+    transition: all .4s;
+}
+.topOut{
+    /* transition: all var(--menuAnimateTime); */
+    -webkit-transform: translateY(100vh);
+    transform: translateY(100vh);
+}
+
+/******************* EventStyle *******************/
+/* opening */
+.neonLightning{
+    animation: neonLightning 1s linear forwards;
+}
+/* scoll animetion */
+.changeBgColorScrollUp{
+    transition: all 2s;
+    background-color: black;   
+    color: #fff;
+}
+.changeBgColorScrollDown{   
+    transition: all 2s;
+    background-color: #e0ffff;
+    color: #000;   
+}
+/* menu */
+.menu.active span:nth-of-type(1) {
+    -webkit-transform: translateY(2vh) rotate(-315deg);
+    transform: translateY(2vh) rotate(-315deg);
+    width: 80%;
+}
+.menu.active span:nth-of-type(2) {
+    opacity: 0;
+}
+.menu.active span:nth-of-type(3) {
+    -webkit-transform: translateY(-2vh) rotate(315deg);
+    transform: translateY(-2vh) rotate(315deg);
+    width: 80%;
+}
+/* sidebar */
+aside.active{
+    /* transition: all var(--menuAnimateTime); */
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+    /* height: 100vh;
+    visibility: visible;
+    display: inline-block; */
+}
+aside.inactive{
+    /* transition: all var(--menuAnimateTime); */
+    -webkit-transform: translateY(-100vh);
+    transform: translateY(-100vh);
+}
+
+span.active{
+    /* transition: all var(--menuAnimateTime); */
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+    /* height: 100vh;
+    visibility: visible;
+    display: inline-block; */
+}
+span.inactive{
+    /* transition: all var(--menuAnimateTime); */
+    -webkit-transform: translateY(-100vh);
+    transform: translateY(-100vh);
+}
+
+
+/*******************  animation(keyframe) *******************/
+/*slide-in down*/
+.slide-in-down{
+    display: inline-block;
+    -webkit-animation: slide-in-down 1s;
+            animation: slide-in-down 1s;
+    -webkit-animation-timing-function: ease;
+            animation-timing-function: ease;
+}
+@-webkit-keyframes slide-in-down{
+    0%
+    {
+        -webkit-transform: translateY(0px);
+    }
+    100%
+    {
+        -webkit-transform: translateY(100vh);
+    }
+}
+@keyframes slide-in-down{
+    0%
+    {
+        transform: translateY(0px);
+    }
+    100%
+    {
+        transform: translateY(100vh);
+    }
+}
+/*slide-in up*/
+.slide-in-up{
+    display: inline-block;
+    -webkit-animation: slide-in-up 1s;
+            animation: slide-in-up 1s;
+    -webkit-animation-timing-function: ease;
+            animation-timing-function: ease;
+}
+@-webkit-keyframes slide-in-up{
+    0%
+    {
+        -webkit-transform: translateY(100vh);
+    }
+    100%
+    {
+        -webkit-transform: translateY(0px);
+    }
+}
+@keyframes slide-in-up{
+    0%
+    {
+        transform: translateY(100vh);
+    }
+    100%
+    {
+        transform: translateY(0px);
+    }
+}
+/* ネオンの光アニメーション */
+@keyframes neonLightning {
+	0% {
+		color: #333;
+	}
+	5%, 15%, 25% {
+		color: #fff;
+		text-shadow: 0px 0px 50px cyan;
+	}
+	10%, 20% {
+		color: #333;
+		text-shadow: none;
+	}
+	
+	30% {
+		color: #fff;
+		text-shadow: 0px 0px 50px cyan;
+	}
+	
+	100% {
+		color: #fff;
+		text-shadow: 0px 0px 50px cyan;
+	}
+}
