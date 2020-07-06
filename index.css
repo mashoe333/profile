@@ -14,9 +14,33 @@ body{
     background-attachment: fixed;
     color: beige;
 }
+header{
+    padding-top: 3vh;
+    height: 10vh;
+    font-size: 5vh;
+    text-align: center;
+}
+
+@media screen and ( max-width:768px) {
+    /*　画面サイズが768px未満ならここを読み込む　*/
+    header{
+        height: 20vh;
+    }
+    header span{
+        display: block;
+    }
+    header span:nth-of-type(1) {
+        text-align: left;
+        margin-left: 18vw;
+    }
+    header span:nth-of-type(2) {
+        text-align: right;
+        margin-right: 18vw;
+    }
+}
 main{
     font-size: 1rem;
-    min-height: 100vh;
+    min-height: 85vh;
     text-align: center;
     display: grid;
     grid-template:
@@ -26,8 +50,9 @@ main{
         /12.5vw 25vw 25vw 25vw 12.5vw;
 }
 @media screen and ( max-width:768px) {
-    /*　画面サイズが768pxから1024pxまではここを読み込む　*/
+    /*　画面サイズが768px未満ならここを読み込む　*/
     main{
+        min-height: 100vh;
         grid-template:
         "..... article1 ....." 20vh
         "..... article2 ....." 20vh
@@ -56,8 +81,9 @@ div[class^="art-"] a{
     justify-content: center;
     flex-direction: column;
 }
-.art-1{
+div.art-1{
     grid-area: article1;
+    background-color: black;
 }
 .art-1 img{
     width: 70%;
@@ -89,6 +115,10 @@ div[class^="art-"] a{
 }
 .target{
     transition: all .4s;
+}
+footer{
+    text-align: right;
+    margin-right: 3vw;
 }
 
 /******************* css event *******************/
