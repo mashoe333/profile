@@ -20,6 +20,7 @@ li{
 }
 i{
     display: inline-block;
+    font-family: 'Oleo Script', cursive;
 }
 span{
     display: inline-block;
@@ -27,6 +28,11 @@ span{
 /******************* CustomeStyle *******************/
 :root {
     --menuAnimateTime: .4s;
+    /* color */
+    --neonLightColor: #00ffff;
+    --backGroundColor2:#e0ffff;
+    --menuColor1:#afeeee;
+    --menuColor2:#b0e0e6;
   }
 /* opening */
 #opening,#ending,#op-space{
@@ -90,18 +96,19 @@ span{
 header{
     position: fixed;
     z-index: 999;
-    top: 1vh;
-    right: 1vw;
+    top: 2vh;
+    right: 3vw;
+    cursor: pointer;
 }
-.menu,
-.menu span {
+.open-menu,
+.open-menu span {
   display: inline-block;
   transition: all var(--menuAnimateTime);
 }
-.menu {
+.open-menu {
   position: relative;
-  width: 10vw;
-  height: 5vh;
+  width: 40px;
+  height: 25px;
   /* 大きすぎるとかっこ悪いから指定 */
   /* 後日ここは細かく調整する */
   /* max-width: 50px;
@@ -109,46 +116,30 @@ header{
 }
 @media screen and (min-width:768px) { 
     /*　画面サイズが768pxからはここを読み込む　*/
-    .menu {
-        width: 5vw;
+    .open-menu {
+        /* width: 5vw; */
     }
 
 }
-.menu span {
+.open-menu span {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 1vh;
+  height: 2px;
   background-color: #fff;
   /* border-radius: 1vh; */
 }
-.menu span:nth-of-type(1) {
+.open-menu span:nth-of-type(1) {
   top: 0;
 }
-.menu span:nth-of-type(2) {
-  top: 2vh;
+.open-menu span:nth-of-type(2) {
+  top: calc(50% - 1px);
 }
-.menu span:nth-of-type(3) {
+.open-menu span:nth-of-type(3) {
   bottom: 0;
 }
 
-/* sideBar */
-aside{
-    height: 100vh;
-    /* height: 0px; */
-    width: 100vw;
-    background-color: cadetblue;
-    z-index: 998;
-    position: absolute;
-    left: 0;
-    top: 0;
-    /* visibility: hidden;
-    display: none; */
-    /* overflow: hidden; */
-    /* -webkit-transform: translateY(100vh);
-    transform: translateY(100vh); */
-    transition: all var(--menuAnimateTime);
-}
+/* menu */
 menu{
     position: fixed;
     top: 0;
@@ -162,33 +153,30 @@ menu{
 }
 menu div{
     position: relative;
-    z-index: 1;
+    z-index: 11;
     width: 100%;
     height: 100%;
     margin: 0 auto;
     display: flex;
     align-items: center;
 }
-span.kenSpan1{
-    z-index: 0;
-    background: #9e8a90;
+.kensyo span{
+    z-index: 10;
     position: absolute;
     top: 0;
+    width: 50%;
+    height: 100%;
+    /* transform: translate3d(0,100vh,0); */
+    transform: translateY(100vh);
+}
+span.kenSpan1{
+    background: var(--menuColor1);
     display: block;
     left: 0;
-    width: 50%;
-    height: 100%;
-    transform: translate3d(0,100vh,0);
 }
 span.kenSpan2{
-    z-index: 0;
-    background: #2c2c2c;
-    position: absolute;
-    top: 0;
+    background: var(--menuColor2);
     right: 0;
-    width: 50%;
-    height: 100%;
-    transform: translate3d(0,100vh,0);
 }
 /* main */
 .topPage{
@@ -247,18 +235,18 @@ span.kenSpan2{
     color: #000;   
 }
 /* menu */
-.menu.active span:nth-of-type(1) {
-    -webkit-transform: translateY(2vh) rotate(-315deg);
-    transform: translateY(2vh) rotate(-315deg);
-    width: 80%;
+.open-menu.active span:nth-of-type(1) {
+    -webkit-transform: translateY(12px) rotate(-315deg);
+    transform: translateY(12px) rotate(-315deg);
+    /* width: 80%; */
 }
-.menu.active span:nth-of-type(2) {
+.open-menu.active span:nth-of-type(2) {
     opacity: 0;
 }
-.menu.active span:nth-of-type(3) {
-    -webkit-transform: translateY(-2vh) rotate(315deg);
-    transform: translateY(-2vh) rotate(315deg);
-    width: 80%;
+.open-menu.active span:nth-of-type(3) {
+    -webkit-transform: translateY(-12px) rotate(315deg);
+    transform: translateY(-12px) rotate(315deg);
+    /* width: 80%; */
 }
 /* sidebar */
 aside.active{
@@ -270,13 +258,14 @@ aside.active{
     display: inline-block; */
 }
 aside.inactive{
-    /* transition: all var(--menuAnimateTime); */
+    transition: all var(--menuAnimateTime);
     -webkit-transform: translateY(-100vh);
     transform: translateY(-100vh);
 }
 
+
 span.active{
-    /* transition: all var(--menuAnimateTime); */
+    transition: all var(--menuAnimateTime);
     -webkit-transform: translateY(0px);
     transform: translateY(0px);
     /* height: 100vh;
@@ -284,7 +273,7 @@ span.active{
     display: inline-block; */
 }
 span.inactive{
-    /* transition: all var(--menuAnimateTime); */
+    transition: all var(--menuAnimateTime);
     -webkit-transform: translateY(-100vh);
     transform: translateY(-100vh);
 }
@@ -354,7 +343,7 @@ span.inactive{
 	}
 	5%, 15%, 25% {
 		color: #fff;
-		text-shadow: 0px 0px 50px cyan;
+		text-shadow: 0px 0px 50px var(--neonLightColor);
 	}
 	10%, 20% {
 		color: #333;
@@ -363,11 +352,11 @@ span.inactive{
 	
 	30% {
 		color: #fff;
-		text-shadow: 0px 0px 50px cyan;
+		text-shadow: 0px 0px 50px var(--neonLightColor);
 	}
 	
 	100% {
 		color: #fff;
-		text-shadow: 0px 0px 50px cyan;
+		text-shadow: 0px 0px 50px var(--neonLightColor);
 	}
 }

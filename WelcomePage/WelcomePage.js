@@ -26,84 +26,39 @@ $(".op-button").on("click",function(){
     opening();
 });
 // 検証
-$(".hima12").on("click",function(){
-    $(".hima3").remove();
-});
+// $(".hima12").on("click",function(){
+//     $(".hima3").remove();
+// });
 // Menu Open and Close
-$(".menu").on("click",function(){
+$(".open-menu").on("click",function(){
     $(this).toggleClass("active");
-    orignalSlideUp($("menu"));
-    // $("aside").toggleClass("active");
-    // $("aside").slideDown(300000);
-    // $("aside").toggleClass("hidden");
-    // if(menuFlg){
-    //     $("aside").toggleClass("active");
-    //     // $("aside").toggleClass("hidden");
-    //     // $("aside").removeClass("slide-in-up");
-    //     // $("aside").addClass("slide-in-down");
-    //     menuFlg = false;
-    // }else{
-    //     // $("aside").toggleClass("hidden");
-    //     $("aside").toggleClass("active");
-    //     // $("aside").removeClass("slide-in-down");
-    //     // $("aside").addClass("slide-in-up");
-    //     menuFlg = true;
-    // }
-    // $("aside").slideUp();
+    orignalSlideUp($(".open-menu"));
 });
+
 // スライドアップ式の表示・非表示切り替えメソッド
 const orignalSlideUp = function(element){
     // hiddenクラスを持つ→表示する
     if(element.hasClass("isopen")){
-        // // スクロール制御を設定
-        // $("body").addClass("scrollStop");
-        // // inactiveを解除（2回目以降の呼び出しに対応）
-        // element.removeClass("inactive");
-        // // hiddenを解除
-        // element.removeClass("hidden");
-        // // 位置を画面外に設定
-        // element.addClass("topOut");
-        // // スライドアップのアニメーション
-        // element.addClass("active");
-        
-        // トランジション設定
-        $(".kenSpan1").addClass("tran04s");
-        $(".kenSpan2").addClass("tran04s");
+        // クローズ時のアニメーションクラスを削除
+        $(".target").removeClass("active");
         // スライドアップのアニメーション
-        $(".kenSpan1").addClass("inactive");
-        $(".kenSpan2").addClass("inactive");
-        // 判定クラスの削除
-        element.removeClass("isopen");
-        // トランジション設定
-        $(".kenSpan1").delay(4000).removeClass("tran04s");
-        $(".kenSpan2").delay(4000).removeClass("tran04s");
-
-
+        $(".target").addClass("inactive");
+        // アニメーション後の処理
+        setTimeout(function(){
+            // 判定クラスの削除
+            element.removeClass("isopen");
+            // アニメーション後に削除
+            $(".target").removeClass("inactive");
+        },300);
     }else{
-        // // 位置を画面外に設定
-        // element.addClass("topOut");
-        // // スライドアップのアニメーション
-        // element.removeClass("active").addClass("inactive");
-        // // hiddenを解除
-        // element.addClass("hidden");
-        // // スクロール制御を解除
-        // $("body").removeClass("scrollStop");
-
-        
-        // 位置を画面外に設定
-        $(".kenSpan1").addClass("topOut");
-        $(".kenSpan2").addClass("topOut");
-        // トランジション設定
-        $(".kenSpan1").addClass("tran04s");
-        $(".kenSpan2").addClass("tran04s");
+        // オープン時のアニメーションクラスを削除
+        $(".target").removeClass("inactive");
         // スライドアップのアニメーション
-        $(".kenSpan1").addClass("active");
-        $(".kenSpan2").addClass("active");
-        // トランジション設定
-        $(".kenSpan1").delay(4000).removeClass("tran04s");
-        $(".kenSpan2").delay(4000).removeClass("tran04s");
+        $(".target").addClass("active");
         // 判定クラスの追加
-        element.delay(4000).addClass("isopen");
+        setTimeout(function(){
+            element.addClass("isopen");
+        },400);
 
     
     }
