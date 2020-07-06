@@ -16,7 +16,7 @@ ul{
 li{
     flex: 1;
     text-align: center;
-    border: 1px solid white;
+    /* border: 1px solid white; */
 }
 i{
     display: inline-block;
@@ -34,7 +34,7 @@ span{
     --menuColor1:#afeeee;
     --menuColor2:#b0e0e6;
   }
-/* opening */
+/*** opening ***/
 #opening,#ending,#op-space{
     width: 100vw;
     height: 100vh;
@@ -92,7 +92,7 @@ span{
     transform: translateY(-10vh);
     animation: neonLightning 1s linear infinite;
 }
-/* menu */
+/*** header ***/
 header{
     position: fixed;
     z-index: 999;
@@ -109,10 +109,6 @@ header{
   position: relative;
   width: 40px;
   height: 25px;
-  /* 大きすぎるとかっこ悪いから指定 */
-  /* 後日ここは細かく調整する */
-  /* max-width: 50px;
-  max-height: 44px; */
 }
 @media screen and (min-width:768px) { 
     /*　画面サイズが768pxからはここを読み込む　*/
@@ -127,7 +123,6 @@ header{
   width: 100%;
   height: 2px;
   background-color: #fff;
-  /* border-radius: 1vh; */
 }
 .open-menu span:nth-of-type(1) {
   top: 0;
@@ -139,7 +134,7 @@ header{
   bottom: 0;
 }
 
-/* menu */
+/*** menu ***/
 menu{
     position: fixed;
     top: 0;
@@ -151,7 +146,8 @@ menu{
     pointer-events: none;
     color: #fff;
 }
-menu div{
+/* 検証用 Start */
+/* menu div{
     position: relative;
     z-index: 11;
     width: 100%;
@@ -166,7 +162,6 @@ menu div{
     top: 0;
     width: 50%;
     height: 100%;
-    /* transform: translate3d(0,100vh,0); */
     transform: translateY(100vh);
 }
 span.kenSpan1{
@@ -177,8 +172,34 @@ span.kenSpan1{
 span.kenSpan2{
     background: var(--menuColor2);
     right: 0;
+} */
+/* 検証用 End */
+/* Not 検証 Start */
+menu div{
+    position: relative;
+    z-index: 11;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    /* display: flex; */
+    /* align-items: center; */
 }
-/* main */
+nav{
+    z-index: 10;
+    /* position: absolute; */
+    /* top: 0; */
+    width: 100%;
+    height: 100%;
+    transform: translateY(100vh);
+    background: var(--menuColor2);
+}
+nav h1{
+    text-align: center;
+}
+
+/* Not 検証 End */
+
+/*** main ***/
 .topPage{
     width: 100vw;
     height: 100vh;
@@ -200,7 +221,7 @@ span.kenSpan2{
     text-align: start;
     margin-left: 5vw;
 }
-/* Util */
+/*** Util ***/
 .hidden{
     visibility: hidden;
     display: none;
@@ -219,11 +240,11 @@ span.kenSpan2{
 }
 
 /******************* EventStyle *******************/
-/* opening */
+/*** opening ***/
 .neonLightning{
     animation: neonLightning 1s linear forwards;
 }
-/* scoll animetion */
+/*** scoll animetion ***/
 .changeBgColorScrollUp{
     transition: all 2s;
     background-color: black;   
@@ -234,7 +255,7 @@ span.kenSpan2{
     background-color: #e0ffff;
     color: #000;   
 }
-/* menu */
+/*** header ***/
 .open-menu.active span:nth-of-type(1) {
     -webkit-transform: translateY(12px) rotate(-315deg);
     transform: translateY(12px) rotate(-315deg);
@@ -248,7 +269,7 @@ span.kenSpan2{
     transform: translateY(-12px) rotate(315deg);
     /* width: 80%; */
 }
-/* sidebar */
+/*** sidebar ***/
 aside.active{
     /* transition: all var(--menuAnimateTime); */
     -webkit-transform: translateY(0px);
@@ -264,23 +285,35 @@ aside.inactive{
 }
 
 
-span.active{
+/*** menu ***/
+/* 検証用 Start */
+/* span.active{
     transition: all var(--menuAnimateTime);
     -webkit-transform: translateY(0px);
     transform: translateY(0px);
-    /* height: 100vh;
-    visibility: visible;
-    display: inline-block; */
 }
 span.inactive{
     transition: all var(--menuAnimateTime);
     -webkit-transform: translateY(-100vh);
     transform: translateY(-100vh);
+} */
+/* 検証用 End */
+/* Not 検証 Start */
+nav.active{
+    transition: all var(--menuAnimateTime);
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
 }
+nav.inactive{
+    transition: all var(--menuAnimateTime);
+    -webkit-transform: translateY(-100vh);
+    transform: translateY(-100vh);
+}
+/* Not 検証 End */
 
 
 /*******************  animation(keyframe) *******************/
-/*slide-in down*/
+/*** slide-in down ***/
 .slide-in-down{
     display: inline-block;
     -webkit-animation: slide-in-down 1s;
@@ -308,7 +341,7 @@ span.inactive{
         transform: translateY(100vh);
     }
 }
-/*slide-in up*/
+/*** slide-in up ***/
 .slide-in-up{
     display: inline-block;
     -webkit-animation: slide-in-up 1s;
@@ -336,7 +369,7 @@ span.inactive{
         transform: translateY(0px);
     }
 }
-/* ネオンの光アニメーション */
+/*** ネオンの光アニメーション ***/
 @keyframes neonLightning {
 	0% {
 		color: #333;
