@@ -4,12 +4,13 @@ const winH = window.innerHeight; // 画面の高さ
 const winW = window.innerWidth; // 画面の高さ
 const charTranY = 120; // 文字がずれていくベースの数字(px)
 const animateChar = $("#top").children("i"); // スクロールのアニメーション対象
-let charTop; // onloadで初期化
-let charMinY = 0; // スクロールアニメーションで文字をずらす開始位置：オープニング後初期化
-let charMaxY = 0; // スクロールアニメーションで文字をずらす終了位置：オープニング後初期化
+let charTop; // オープニング後に初期化
+let charMinY = 0; // スクロールアニメーションで文字をずらす開始位置：オープニング後に初期化
+let charMaxY = 0; // スクロールアニメーションで文字をずらす終了位置：オープニング後に初期化
+let bgChangeBaseY_Down = 0; // スクロールダウンで背景色を変更する基準位置：オープニング後に初期化
+let bgChangeBaseY_Up = 0; // スクロールアップで背景色を変更する基準位置：オープニング後に初期化
 let baseScrollPoint; // スクロール基準位置
 let scrollDirFlg = true; // スクロールの背景色変更用フラグ（連続で同じ処理をしないように）
-let menuFlg = false;
 
 // 画面表示完了後の値で初期化
 // これ必要？→オープニングの終わりで初期化してるから不要じゃない？ start
@@ -44,6 +45,7 @@ const orignalSlideUp = function(element){
         // スライドアップのアニメーション
         $(".target").addClass("inactive");
         // アニメーション後の処理
+        // 非表示にする時間は表示する時間より早い方がスムーズに見える
         setTimeout(function(){
             // 判定クラスの削除
             element.removeClass("isopen");
@@ -59,50 +61,9 @@ const orignalSlideUp = function(element){
         setTimeout(function(){
             element.addClass("isopen");
         },400);
-
-    
     }
 };
 
-
-/***************** 移動はスクロール Start ****************/ 
-// オープニングアニメーション処理
-// const opening = function(){
-//     // ボタンアニメーション
-//     $(".op-button").css("opacity","1").css("background","none").css("border", "black").css("transition","none");
-//     $(".op-click").css("opacity","0").css("transition","none");
-//     // ボタンの中の文字（Start）に対して時間差でアニメーションを適用する
-//     $(".op-button #n1").addClass("neonLightning");  // S
-//     $(".op-button #n2").addClass("neonLightning").css("animation-delay",".2s"); // t
-//     $(".op-button #n3").addClass("neonLightning").css("animation-delay",".5s"); // a
-//     $(".op-button #n4").addClass("neonLightning").css("animation-delay",".7s"); // r
-//     $(".op-button #n5").addClass("neonLightning").css("animation-delay",".9s"); // t
-    
-//     // ボタン押下4秒後：オープニングページのスクロール防止を解除
-//     $(".scrollStop").delay(4000).removeClass("scrollStop");
-
-//     // ボタン押下4秒後：スクロールダウン（2秒かけて→終了時はボタン押下から6秒経過→openingEndをCall）
-//     setTimeout(function(){
-//         $("html,body").animate({
-//             scrollTop:$("main").offset().top
-//         },2000,"swing").promise().done(openingEnd);
-//     },4000);
-// };
-// // オープニングアニメーション完了後にもろもろ初期化
-// const openingEnd = function(){
-//     $("body").addClass("scrollStop"); // IE,iOS対応
-//     // オープニング部分の削除
-//     $("#opening").remove();
-//     $("#op-space").remove();
-//     // スクロールアニメーションの初期化
-//     charTop = $("#top").offset().top;
-//     charMinY = Math.floor(charTop - winH*.7);
-//     charMaxY = Math.floor(charTop - winH*.1);
-//     $(".scrollStop").removeClass("scrollStop"); // IE,iOS対応
-//     $("header").removeClass("hidden");
-// };
-/***************** 移動はスクロール End ****************/
-/***************** 移動はトランスフォーム Start ****************/
 // オープニングアニメーション処理
 const opening = function(){
     // ボタンアニメーション
@@ -114,24 +75,18 @@ const opening = function(){
     $(".op-button #n3").addClass("neonLightning").css("animation-delay",".5s"); // a
     $(".op-button #n4").addClass("neonLightning").css("animation-delay",".7s"); // r
     $(".op-button #n5").addClass("neonLightning").css("animation-delay",".9s"); // t
-    
-    // ボタン押下4秒後：オープニングページのスクロール防止を解除
-    // $(".scrollStop").delay(4000).removeClass("scrollStop");
 
-    // ボタン押下4秒後：スクロールダウン（2秒かけて→終了時はボタン押下から6秒経過→openingEndをCall）
+    // ボタン押下2秒後：スクロールダウン（3秒かけて→終了時はボタン押下から5秒経過→openingEndをCall）
     setTimeout(function(){
-        // $("html,body").animate({
-        //     scrollTop:$("main").offset().top
-        // },2000,"swing").promise().done(openingEnd);
-        // alert($("main").offset().top);
-        $("body").addClass("tran2s").css("transform","translateY(-" + $("main").offset().top + "px)");
+        // 3秒かけてmainまでスクロール（正確にはbodyのtransform）
+        $("body").addClass("tran3s").css("transform","translateY(-" + $("main").offset().top + "px)");
+        // 3秒後に設定することで、スクロール後のタイミングで処理を実施する
         setTimeout(function(){
-
-            $("body").removeClass("tran2s").css("transform","translateY(0px)");
+            // 他の処理もあるので、設定した部分は削除
+            $("body").removeClass("tran3s").css("transform","translateY(0px)");
             openingEnd();
-        },2000);
-        
-    },4000);
+        },3000);
+    },2000);
 };
 // オープニングアニメーション完了後にもろもろ初期化
 const openingEnd = function(){
@@ -142,12 +97,11 @@ const openingEnd = function(){
     charTop = $("#top").offset().top;
     charMinY = Math.floor(charTop - winH*.7);
     charMaxY = Math.floor(charTop - winH*.1);
+    bgChangeBaseY_Down = $(".hima3").offset().top;
+    bgChangeBaseY_Up = $(".hima-message").offset().top;
     $(".scrollStop").removeClass("scrollStop"); // IE,iOS対応
     $("header").removeClass("hidden");
 };
-/***************** 移動はトランスフォーム End ****************/
-
-
 
 /******************* ColorObject *******************/
 /* スクロールで背景色を徐々に変更しようと試みるも、cssのtransitionで解決したから不要 */
@@ -194,7 +148,7 @@ $(window).scroll(function() {
     // 一定の位置で背景色を変化
     if(baseScrollPoint < currentY){
         // 基準位置の方が低い→スクロールダウン時
-        if(charTop < currentY && scrollDirFlg){
+        if(bgChangeBaseY_Down < currentY && scrollDirFlg){
             // charTopの位置を超えていたら
             $("body").removeClass("changeBgColorScrollUp");
             $("body").addClass("changeBgColorScrollDown");
@@ -202,7 +156,7 @@ $(window).scroll(function() {
         }
     }else{
         // 基準位置の方が高い→スクロールアップ時
-        if(charTop > currentY && !scrollDirFlg){
+        if(bgChangeBaseY_Up > currentY && !scrollDirFlg){
             // charTopの位置を超えていなかったら
             $("body").removeClass("changeBgColorScrollDown");
             $("body").addClass("changeBgColorScrollUp");
