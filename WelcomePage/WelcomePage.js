@@ -126,7 +126,7 @@ const opening = function(){
         // alert($("main").offset().top);
         $("body").addClass("tran2s").css("transform","translateY(-" + $("main").offset().top + "px)");
         setTimeout(function(){
-            
+
             $("body").removeClass("tran2s").css("transform","translateY(0px)");
             openingEnd();
         },2000);
@@ -135,7 +135,6 @@ const opening = function(){
 };
 // オープニングアニメーション完了後にもろもろ初期化
 const openingEnd = function(){
-    $("body").addClass("scrollStop"); // IE,iOS対応
     // オープニング部分の削除
     $("#opening").remove();
     $("#op-space").remove();

@@ -240,7 +240,7 @@ nav h1{
     transition: all .4s;
 }
 .tran2s{
-    transition: all 2s !important;
+    transition: all 2s ease-in-out !important;
 }
 .topOut{
     /* transition: all var(--menuAnimateTime); */
