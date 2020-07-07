@@ -53,10 +53,14 @@ span{
     align-items: center;
     flex-direction: column;
 }
+.welcome{
+    font-family: 'Oleo Script', cursive;
+}
 #op-content{
     text-align: center;
     padding: 1%;
-    perspective: 500;
+    /* perspective: 500; */
+    width: 20vw;
 }
 .op-button{
     background-color: ghostwhite;
@@ -67,6 +71,7 @@ span{
     position: absolute;
     transform: translateX(-50%);
     opacity: 0;
+    width: 20vw;
 }
 .op-click{
     background-color: black;
@@ -77,6 +82,7 @@ span{
     position: absolute;
     transform: translateX(-50%);
     opacity: 1;
+    width: 20vw;
 }
 #op-content:hover .op-button{
     transition: all .5s ease;
