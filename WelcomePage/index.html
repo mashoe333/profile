@@ -12,6 +12,15 @@
 <body class="scrollStop">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
     <script src="../js/jquery-min.js"></script>
+    <script type="text/javascript">
+        if (navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPod') > 0) {
+            // iOSなら追加でcssを充てる
+            document.write('<link rel="stylesheet" type="text/css" href="iOS.css">');
+        }else {
+            // それ以外ならHoverのアニメーションのcssを充てる
+            document.write('<link rel="stylesheet" type="text/css" href="hover.css">');
+        }
+    </script>
     <!--------------- Opening --------------->
     <div id="opening">
         <div class="welcome">Welcome Page</div>

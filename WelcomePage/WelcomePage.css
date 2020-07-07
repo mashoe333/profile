@@ -84,14 +84,6 @@ span{
     opacity: 1;
     width: 20vw;
 }
-#op-content:hover .op-button{
-    transition: all .5s ease;
-    opacity: 1;
-}
-#op-content:hover .op-click{
-    transition: all .5s ease;
-    opacity: 0;
-}
 
 .welcome{
     font-size: 10vw;
