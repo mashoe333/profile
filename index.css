@@ -84,6 +84,7 @@ div[class^="art-"] a{
 div.art-1{
     grid-area: article1;
     background-color: black;
+    opacity: 0.5;
 }
 .art-1 img{
     width: 70%;

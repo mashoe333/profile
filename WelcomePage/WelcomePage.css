@@ -239,6 +239,9 @@ nav h1{
 .tran04s{
     transition: all .4s;
 }
+.tran2s{
+    transition: all 2s !important;
+}
 .topOut{
     /* transition: all var(--menuAnimateTime); */
     -webkit-transform: translateY(100vh);

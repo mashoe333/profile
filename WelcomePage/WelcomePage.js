@@ -64,6 +64,45 @@ const orignalSlideUp = function(element){
     }
 };
 
+
+/***************** 移動はスクロール Start ****************/ 
+// オープニングアニメーション処理
+// const opening = function(){
+//     // ボタンアニメーション
+//     $(".op-button").css("opacity","1").css("background","none").css("border", "black").css("transition","none");
+//     $(".op-click").css("opacity","0").css("transition","none");
+//     // ボタンの中の文字（Start）に対して時間差でアニメーションを適用する
+//     $(".op-button #n1").addClass("neonLightning");  // S
+//     $(".op-button #n2").addClass("neonLightning").css("animation-delay",".2s"); // t
+//     $(".op-button #n3").addClass("neonLightning").css("animation-delay",".5s"); // a
+//     $(".op-button #n4").addClass("neonLightning").css("animation-delay",".7s"); // r
+//     $(".op-button #n5").addClass("neonLightning").css("animation-delay",".9s"); // t
+    
+//     // ボタン押下4秒後：オープニングページのスクロール防止を解除
+//     $(".scrollStop").delay(4000).removeClass("scrollStop");
+
+//     // ボタン押下4秒後：スクロールダウン（2秒かけて→終了時はボタン押下から6秒経過→openingEndをCall）
+//     setTimeout(function(){
+//         $("html,body").animate({
+//             scrollTop:$("main").offset().top
+//         },2000,"swing").promise().done(openingEnd);
+//     },4000);
+// };
+// // オープニングアニメーション完了後にもろもろ初期化
+// const openingEnd = function(){
+//     $("body").addClass("scrollStop"); // IE,iOS対応
+//     // オープニング部分の削除
+//     $("#opening").remove();
+//     $("#op-space").remove();
+//     // スクロールアニメーションの初期化
+//     charTop = $("#top").offset().top;
+//     charMinY = Math.floor(charTop - winH*.7);
+//     charMaxY = Math.floor(charTop - winH*.1);
+//     $(".scrollStop").removeClass("scrollStop"); // IE,iOS対応
+//     $("header").removeClass("hidden");
+// };
+/***************** 移動はスクロール End ****************/
+/***************** 移動はトランスフォーム Start ****************/
 // オープニングアニメーション処理
 const opening = function(){
     // ボタンアニメーション
@@ -77,13 +116,21 @@ const opening = function(){
     $(".op-button #n5").addClass("neonLightning").css("animation-delay",".9s"); // t
     
     // ボタン押下4秒後：オープニングページのスクロール防止を解除
-    $(".scrollStop").delay(4000).removeClass("scrollStop");
+    // $(".scrollStop").delay(4000).removeClass("scrollStop");
 
     // ボタン押下4秒後：スクロールダウン（2秒かけて→終了時はボタン押下から6秒経過→openingEndをCall）
     setTimeout(function(){
-        $("html,body").animate({
-            scrollTop:$("main").offset().top
-        },2000,"swing").promise().done(openingEnd);
+        // $("html,body").animate({
+        //     scrollTop:$("main").offset().top
+        // },2000,"swing").promise().done(openingEnd);
+        // alert($("main").offset().top);
+        $("body").addClass("tran2s").css("transform","translateY(-" + $("main").offset().top + "px)");
+        setTimeout(function(){
+            
+            $("body").removeClass("tran2s").css("transform","translateY(0px)");
+            openingEnd();
+        },2000);
+        
     },4000);
 };
 // オープニングアニメーション完了後にもろもろ初期化
@@ -99,6 +146,10 @@ const openingEnd = function(){
     $(".scrollStop").removeClass("scrollStop"); // IE,iOS対応
     $("header").removeClass("hidden");
 };
+/***************** 移動はトランスフォーム End ****************/
+
+
+
 /******************* ColorObject *******************/
 /* スクロールで背景色を徐々に変更しようと試みるも、cssのtransitionで解決したから不要 */
 // // コンストラクタ
