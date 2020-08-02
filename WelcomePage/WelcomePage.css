@@ -27,6 +27,7 @@ span{
 }
 /******************* CustomeStyle *******************/
 :root {
+    /* time */
     --menuAnimateTime: .4s;
     /* color */
     --neonLightColor: #00ffff;
@@ -34,6 +35,7 @@ span{
     --menuColor1:#afeeee;
     --menuColor2:#b0e0e6;
   }
+
 /*** opening ***/
 #opening,#ending,#op-space{
     width: 100vw;
@@ -53,13 +55,9 @@ span{
     align-items: center;
     flex-direction: column;
 }
-.welcome{
-    font-family: 'Oleo Script', cursive;
-}
 #op-content{
     text-align: center;
     padding: 1%;
-    /* perspective: 500; */
     width: 20vw;
 }
 .op-button{
@@ -84,16 +82,17 @@ span{
     opacity: 1;
     width: 20vw;
 }
-
 .welcome{
+    font-family: 'Oleo Script', cursive;
     font-size: 10vw;
     transform: translateY(-10vh);
     animation: neonLightning 1s linear infinite;
 }
+
 /*** header ***/
 header{
     position: fixed;
-    z-index: 999;
+    z-index: 99999;
     top: 2vh;
     right: 3vw;
     cursor: pointer;
@@ -144,48 +143,15 @@ menu{
     pointer-events: none;
     color: #fff;
 }
-/* 検証用 Start */
-/* menu div{
+menu div.menuWrapper{
     position: relative;
     z-index: 11;
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
-}
-.kensyo span{
-    z-index: 10;
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    transform: translateY(100vh);
-}
-span.kenSpan1{
-    background: var(--menuColor1);
-    display: block;
-    left: 0;
-}
-span.kenSpan2{
-    background: var(--menuColor2);
-    right: 0;
-} */
-/* 検証用 End */
-/* Not 検証 Start */
-menu div{
-    position: relative;
-    z-index: 11;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    /* display: flex; */
-    /* align-items: center; */
 }
 nav{
     z-index: 10;
-    /* position: absolute; */
-    /* top: 0; */
     width: 100%;
     height: 100%;
     transform: translateY(100vh);
@@ -193,9 +159,22 @@ nav{
 }
 nav h1{
     text-align: center;
-}
+    font-size: 20vw;
 
-/* Not 検証 End */
+}
+nav div.menuMessage{
+    margin-top: 10vh;
+    max-height: 10%;
+    text-align: center;
+}
+nav svg rect{
+    stroke: orange;
+    stroke-width: 2rem;
+    animation: animateSvg 20s ease-out infinite;
+}
+nav svg{
+    animation: animateSvg 2.5s ease-out infinite;
+}
 
 /*** main ***/
 .topPage{
@@ -209,16 +188,40 @@ nav h1{
     -ms-flex-direction: column;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 }
 .flexInline{
-    flex-direction: row;
-
+    /* flex-direction: row; */
+    border: white 5px solid;
+    width: 80vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .scrollWelcome{
     font-size: 5vw;
     text-align: start;
-    margin-left: 5vw;
 }
+.scrollWelcomeWrap{
+    margin-left: 10vw;
+    align-self: flex-start;
+    background-color: blueviolet;
+}
+main>div.topPage>div{
+    text-align: center;
+}
+main>div:nth-of-type(n + 2){
+    width: 80vw;
+    margin: 5vh;
+    text-align: center;
+}
+main>div.topPage>div:nth-of-type(3){
+    width: 80vw;
+    margin: 5vh;
+}
+
 /*** Util ***/
 .hidden{
     visibility: hidden;
@@ -241,11 +244,13 @@ nav h1{
 }
 
 /******************* EventStyle *******************/
-/*** opening ***/
+/*** opening:constant animation ***/
 .neonLightning{
     animation: neonLightning 1s linear forwards;
 }
-/*** scoll animetion ***/
+
+/*** body:scoll animetion ***/
+/* 背景色の */
 .changeBgColorScrollUp{
     transition: all 2s;
     background-color: black;   
@@ -256,11 +261,12 @@ nav h1{
     background-color: #e0ffff;
     color: #000;   
 }
-/*** header ***/
+
+/*** header:click animation ***/
+/* 右上アイコンの切り替え */
 .open-menu.active span:nth-of-type(1) {
     -webkit-transform: translateY(12px) rotate(-315deg);
     transform: translateY(12px) rotate(-315deg);
-    /* width: 80%; */
 }
 .open-menu.active span:nth-of-type(2) {
     opacity: 0;
@@ -268,38 +274,10 @@ nav h1{
 .open-menu.active span:nth-of-type(3) {
     -webkit-transform: translateY(-12px) rotate(315deg);
     transform: translateY(-12px) rotate(315deg);
-    /* width: 80%; */
-}
-/*** sidebar ***/
-aside.active{
-    /* transition: all var(--menuAnimateTime); */
-    -webkit-transform: translateY(0px);
-    transform: translateY(0px);
-    /* height: 100vh;
-    visibility: visible;
-    display: inline-block; */
-}
-aside.inactive{
-    transition: all var(--menuAnimateTime);
-    -webkit-transform: translateY(-100vh);
-    transform: translateY(-100vh);
 }
 
-
-/*** menu ***/
-/* 検証用 Start */
-/* span.active{
-    transition: all var(--menuAnimateTime);
-    -webkit-transform: translateY(0px);
-    transform: translateY(0px);
-}
-span.inactive{
-    transition: all var(--menuAnimateTime);
-    -webkit-transform: translateY(-100vh);
-    transform: translateY(-100vh);
-} */
-/* 検証用 End */
-/* Not 検証 Start */
+/*** menu:click animation ***/
+/* メニュー画面の開閉 */
 nav.active{
     transition: all var(--menuAnimateTime);
     -webkit-transform: translateY(0px);
@@ -310,8 +288,6 @@ nav.inactive{
     -webkit-transform: translateY(-100vh);
     transform: translateY(-100vh);
 }
-/* Not 検証 End */
-
 
 /*******************  animation(keyframe) *******************/
 /*** slide-in down ***/
@@ -393,4 +369,13 @@ nav.inactive{
 		color: #fff;
 		text-shadow: 0px 0px 50px var(--neonLightColor);
 	}
+}
+/*** svgを変化させるアニメーション ***/
+@keyframes animateSvg {
+    0% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: 10;
+    }
 }

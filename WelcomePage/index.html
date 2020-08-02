@@ -10,7 +10,6 @@
 </head>
 <!-- Body：初期表示でオープニング画面以外を表示したくないので、スクロールを制御 -->
 <body class="scrollStop">
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
     <script src="../js/jquery-min.js"></script>
     <script type="text/javascript">
         if (navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPod') > 0) {
@@ -50,13 +49,7 @@
     </header>
     <!--------------- Menu --------------->
     <menu>
-        <!-- 検証用Demo -->
-        <!-- <div class="kensyo">
-            <span class="target kenSpan1"></span>
-            <span class="target kenSpan2"></span>
-        </div> -->
-        <!-- Not検証 -->
-        <div>
+        <div class="menuWrapper">
             <nav class="target navi">
                 <h1>menu</h1>
                 <ul>
@@ -64,6 +57,13 @@
                     <li>メニューを</li>
                     <li>つくる</li>
                 </ul>
+                <div class="menuMessage">
+                    <div class="lsatModified">Lsat Modified: 2020/08/02</div>
+                    <div class="madeBy">Made By: ma</div>
+                    <svg>
+                        <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+                    </svg>
+                </div>
             </nav>
         </div>
     </menu>
@@ -72,13 +72,13 @@
         <div class="topPage">
             <div class="flexInline">
                 <div>
-                    文面は
+                    No Content
                 </div>
             </div>
             <div class="flexInline">
-                かんがえてない
+                No Content
             </div>
-            <div class="flexInline">
+            <div class="scrollWelcomeWrap">
                 <div class="scrollWelcome" id="top">
                     <i data-py="0.3">W</i>
                     <i data-py="0.6">e</i>
@@ -95,17 +95,30 @@
                 </div>
             </div>
         </div>
-        <div class="hima-message" style="width: 100vw; height: 100vh;">暇つぶし</div>
+        <div class="hima-message" style="height: 100vh;">暇つぶし</div>
         <h1>himatsubushi</h1>
-        <div>なにか</div>
-        <div>内容を</div>
-        <div class="hima3">考えてくれるひと</div>
-        <div>いたら</div>
-        <div>連絡して</div>
-        <div>ください</div>
-        <div>Webデザインとか</div>
-        <div>興味あったら</div>
-        <div class="hima12">よろ</div>
+        <div class="flexInline">
+            <div>
+                No Content
+            </div>
+        </div>
+        <div class="flexInline">
+            <div>
+                No Content
+            </div>
+        </div>
+        <div class="hima3">何も内容は考えてない</div>
+        <div class="flexInline">
+            <div>
+                No Content
+            </div>
+        </div>
+        <div class="flexInline">
+            <div>
+                No Content
+            </div>
+        </div>
+        <div class="hima12">開発中</div>
     </main>
     <!--------------- Footer --------------->
     <footer>
@@ -126,14 +139,5 @@
         </div>
     </div>
     <script src="WelcomePage.js"></script>
-    <style>
-        main div{
-            /* margin: 10% 0; */
-            text-align: center;
-        }
-        main div:nth-of-type(n + 3){
-            margin: 5vh;
-        }
-    </style>
 </body>
 </html>

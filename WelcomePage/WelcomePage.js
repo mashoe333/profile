@@ -101,6 +101,8 @@ const openingEnd = function(){
     bgChangeBaseY_Up = $(".hima-message").offset().top;
     $(".scrollStop").removeClass("scrollStop"); // IE,iOS対応
     $("header").removeClass("hidden");
+    // transformを初期化しないとHeaderのposition:fixedが効かない
+    $("body").css("transform","");
 };
 
 /******************* ColorObject *******************/

@@ -8,20 +8,27 @@ a:visited{
     color: inherit;
 }
 /******************* custome style *******************/
+/*** body ***/
 body{
-    background-image: url(images/chaos.jpeg);
-    background-size: cover;
+    /* background-image: url(images/chaos.jpeg); */
+    /* background-size: cover; */
     background-attachment: fixed;
+    /* background: #155264; */
+    background-image: 
+        radial-gradient(40% 30% ellipse at center top, #3f5575 0%, rgba(0, 0, 0, 0) 100%), 
+        radial-gradient(60% 50% ellipse at center bottom, #4b5058 0%, #100a1c 100%);
     color: beige;
 }
+/*** haader ***/
 header{
+    margin: 3vh auto;
     padding-top: 3vh;
     height: 10vh;
     font-size: 5vh;
     text-align: center;
 }
 
-@media screen and ( max-width:768px) {
+@media screen and (max-width:768px) {
     /*　画面サイズが768px未満ならここを読み込む　*/
     header{
         height: 20vh;
@@ -29,7 +36,7 @@ header{
     header span{
         display: block;
     }
-    header span:nth-of-type(1) {
+    /* header span:nth-of-type(1) {
         text-align: left;
         margin-left: 18vw;
         margin-bottom: 2vh;
@@ -37,38 +44,101 @@ header{
     header span:nth-of-type(2) {
         text-align: right;
         margin-right: 18vw;
-    }
+    } */
 }
+
+/*** main ***/
 main{
     font-size: 1rem;
     min-height: 85vh;
     text-align: center;
-    display: grid;
-    grid-template:
-        "..... article1 article2 article3 ....." 25vh
-        "..... article4 article5 article6 ....." 25vh
-        "..... article7 article8 article9 ....." 25vh
-        /12.5vw 25vw 25vw 25vw 12.5vw;
 }
-@media screen and ( max-width:768px) {
+/* PC */
+@media screen and (min-width:769px) {
+    main{
+        display: grid;
+        grid-template:
+            "..... article1 article2 article3 ....." 25vh
+            "..... article4 article5 article6 ....." 25vh
+            "..... article7 article8 article9 ....." 25vh
+            /12.5vw 25vw 25vw 25vw 12.5vw;
+    }
+    .wrapper{
+        height: 100%;
+    }
+    .art-1{
+        grid-area: article1;
+    }
+    .art-2{
+        grid-area: article2;
+    }
+    .art-3{
+        grid-area: article3;
+    }
+    .art-4{
+        grid-area: article4;
+    }
+    .art-5{
+        grid-area: article5;
+    }
+    .art-6{
+        grid-area: article6;
+    }
+    .art-7{
+        grid-area: article7;
+    }
+    .art-8{
+        grid-area: article8;
+    }
+    .art-9{
+        grid-area: article9;
+    }
+
+}
+/* SP */
+@media screen and (max-width:768px) {
     /*　画面サイズが768px未満ならここを読み込む　*/
     main{
         min-height: 100vh;
+        /* display: grid;
         grid-template:
-        "..... article1 ....." 20vh
-        "..... article2 ....." 20vh
-        "..... article3 ....." 20vh
-        "..... article4 ....." 20vh
-        "..... article5 ....." 20vh
-        "..... article6 ....." 20vh
-        "..... article7 ....." 20vh
-        "..... article8 ....." 20vh
-        "..... article9 ....." 20vh
-        /10vw 80vw 10vw;
+        "..... sp-article1 article1" 20vh
+        "..... sp-article2 article2" 20vh
+        "..... sp-article3 article3" 20vh
+        "..... sp-article4 article4" 20vh
+        "..... sp-article5 article5" 20vh
+        "..... sp-article6 article6" 20vh
+        "..... sp-article7 article7" 20vh
+        "..... sp-article8 article8" 20vh
+        "..... sp-article9 article9" 20vh
+        /15vw 40vw 45vw; */
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .wrapper{
+        width: 55%;
+        /* transition: .4s; */
+    }
+    .wrapper.mainPosition{
+        width: 80%;
+    }
+    div[class^="sp-art-"]{
+        width: 100vw;
+        height: 20vh;
+        /* margin-left: calc(10vh - 2px) */
+        /* margin-left: 10vh; */
+    }
+    div[class^="art-"]{
+        width: 100vw;
+        transition: all 3s;
+        height: 20vh;
+        display: flex;
+        justify-content: flex-end;
     }
 }
 
-div[class^="art-"]{
+div[class^="art-"] .wrapper{
     border: 1px solid black;
     text-align: center;
     transition: all .4s;
@@ -79,60 +149,112 @@ div[class^="art-"] a{
     width: 100%;
     height: 100%;
     display: flex;
+    position: relative;
     justify-content: center;
     flex-direction: column;
 }
-div.art-1{
-    grid-area: article1;
-    background-color: black;
-    opacity: 0.5;
-}
-.art-1 img{
-    width: 70%;
-}
 
-.art-2{
-    grid-area: article2;
-}
-.art-3{
-    grid-area: article3;
-}
-.art-4{
-    grid-area: article4;
-}
-.art-5{
-    grid-area: article5;
-}
-.art-6{
-    grid-area: article6;
-}
-.art-7{
-    grid-area: article7;
-}
-.art-8{
-    grid-area: article8;
-}
-.art-9{
-    grid-area: article9;
-}
 .target{
     transition: all .4s;
 }
+svg {
+    height: 90%;
+    left: 5%;
+    position: absolute;
+    top: 5%; 
+    width: 90%; 
+}
+rect {
+    fill: none;
+    stroke: slategray;
+    stroke-width: 2;
+    stroke-dasharray: 0, 0;
+    stroke-dashoffset: 0;
+    transition: all 0.35s linear;
+}
+/* div[class^="art-"]:hover > a svg rect{ */
+delete{
+    stroke-width: 5;
+    stroke-dasharray: 100%, 20;
+    /* stroke-dasharray: 0, 0; */
+    stroke-dashoffset: 100%;
+    /* アニメーションがあたった時だけのTransition */
+    transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+@keyframes anime{
+    0%{
+        stroke-width: 5;
+        stroke-dasharray: 15, 310;
+        stroke-dashoffset: 48;
+        transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+}
+
+
+div.art-1 .wrapper {
+    background-color: black;
+    opacity: 0.5;
+}
+.art-1  img{
+    width: 70%;
+}
+/*** footer ***/
 footer{
     text-align: right;
     margin-right: 3vw;
 }
 
+@media screen and (max-width:768px) {
+    footer{
+        margin-top: 10vh;
+    }
+}
+
+
 /******************* css event *******************/
-/* hover：SPならクリック時 */
-/* 各作品に対して */
-div[class^="art-"]:hover{
-    opacity: 0.7;
-
+/*** Hover:SPは挙動に差異あるからつけない ***/
+@media screen and (min-width:768px) {
+    /* 各作品に対して */
+    div[class^="art-"] .wrapper:hover{
+        opacity: 0.7;
+    
+    }
+    /* 遷移可能な各作品に対して */
+    div[class^="art-"].canDisplay .wrapper:hover{
+        background-color: goldenrod;
+    }
+    /* ホバー子要素のaタグ配下にある「target」クラスに対して */
+    div[class^="art-"]:hover > a .target{
+        /* transform: scale(1.2, 1) translateY(10px); */
+        transform: scale(1.2, 1);
+    }
 }
-/* ホバー子要素のaタグ配下にある「target」クラスに対して */
-div[class^="art-"]:hover > a .target{
-    /* transform: scale(1.2, 1) translateY(10px); */
-    transform: scale(1.2, 1);
+
+/******************* Util *******************/
+ .inDev{
+  box-shadow:inset 0px 0px 150px 20px black;
+  mix-blend-mode: multiply;
+  -webkit-animation: devAnime 3s infinite;
+  -moz-animation: devAnime 3s infinite;
+  -o-animation: devAnime 3s infinite;
+  animation: devAnime 3s infinite;
 }
 
+/******************* css animation *******************/
+/* 開発中のアニメーション */
+@-webkit-keyframes devAnime {
+    0% , 100%{ opacity: 1; }
+    50% { opacity: 0.7; }
+}
+@-moz-keyframes devAnime {
+    0% , 100%{ opacity: 1; }
+    50% { opacity: 0.7; }
+}
+@-o-keyframes devAnime {
+    0% , 100%{ opacity: 1; }
+    50% { opacity: 0.7; }
+}
+@keyframes devAnime {
+    0% , 100%{ opacity: 1; }
+    50% { opacity: 0.7; }
+}
