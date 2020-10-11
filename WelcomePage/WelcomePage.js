@@ -102,6 +102,9 @@ const openingEnd = function(){
     $("header").removeClass("hidden");
     // transformを初期化しないとHeaderのposition:fixedが効かない
     $("body").css("transform","");
+
+    $(".rightOut").removeClass("rightOut");
+    $(".leftOut").removeClass("leftOut");
 };
 
 /******************* scroll event *******************/

@@ -210,7 +210,14 @@ menu nav svg{
     justify-content: space-around;
     align-items: center;
 }
-
+.offscreen{
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+}
+.topMessage svg g line{
+    fill: none;
+    stroke: #FFCC00	; /*線の色を指定する*/
+}
 /* PC */
 @media screen and (min-width:769px) {
     .profile{
@@ -279,7 +286,7 @@ main>div.topPage>div:nth-of-type(3){
     transition: all .4s;
 }
 .tran1s{
-    transition: all 1s;
+    transition: all 1s ease-out;
 }
 .tran3s{
     transition: all 3s ease-in-out !important;
@@ -288,6 +295,14 @@ main>div.topPage>div:nth-of-type(3){
     /* transition: all var(--menuAnimateTime); */
     -webkit-transform: translateY(100vh);
     transform: translateY(100vh);
+}
+.rightOut{
+    -webkit-transform: translateX(100vw);
+    transform: translateX(100vw);
+}
+.leftOut{
+    -webkit-transform: translateX(-100vw);
+    transform: translateX(-100vw);
 }
 .underline{
     text-decoration: underline;
@@ -424,8 +439,10 @@ nav.inactive{
 @keyframes animateSvg {
     0% {
         stroke-dashoffset: 0;
+        stroke-dasharray:150;
     }
     100% {
-        stroke-dashoffset: 10;
+        stroke-dashoffset: 150;
+        stroke-dasharray:150;
     }
 }
