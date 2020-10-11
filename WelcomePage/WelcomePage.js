@@ -9,8 +9,10 @@ let charMinY = 0; // スクロールアニメーションで文字をずらす�
 let charMaxY = 0; // スクロールアニメーションで文字をずらす終了位置：オープニング後に初期化
 let bgChangeBaseY_Down = 0; // スクロールダウンで背景色を変更する基準位置：オープニング後に初期化
 let bgChangeBaseY_Up = 0; // スクロールアップで背景色を変更する基準位置：オープニング後に初期化
+let profileY = 0; // スクロールダウンで表示するプロフィール部分の基準位置：オープニング後に初期化
 let baseScrollPoint; // スクロール基準位置
 let scrollDirFlg = true; // スクロールの背景色変更用フラグ（連続で同じ処理をしないように）
+let displayProfileflg = false; // プロフィール表示フラグ（連続で同じ処理をしないように）
 
 // 画面表示完了後の値で初期化
 // これ必要？→オープニングの終わりで初期化してるから不要じゃない？ start
@@ -26,10 +28,6 @@ let scrollDirFlg = true; // スクロールの背景色変更用フラグ（連�
 $(".op-button").on("click",function(){
     opening();
 });
-// 検証
-// $(".hima12").on("click",function(){
-//     $(".hima3").remove();
-// });
 // Menu Open and Close
 $(".open-menu").on("click",function(){
     $(this).toggleClass("active");
@@ -97,44 +95,18 @@ const openingEnd = function(){
     charTop = $("#top").offset().top;
     charMinY = Math.floor(charTop - winH*.7);
     charMaxY = Math.floor(charTop - winH*.1);
-    bgChangeBaseY_Down = $(".hima3").offset().top;
-    bgChangeBaseY_Up = $(".hima-message").offset().top;
+    bgChangeBaseY_Down = $(".baseY_Down").offset().top;
+    bgChangeBaseY_Up = $(".baseY_Up").offset().top;
+    profileY = $(".profile").offset().top;
     $(".scrollStop").removeClass("scrollStop"); // IE,iOS対応
     $("header").removeClass("hidden");
     // transformを初期化しないとHeaderのposition:fixedが効かない
     $("body").css("transform","");
 };
 
-/******************* ColorObject *******************/
-/* スクロールで背景色を徐々に変更しようと試みるも、cssのtransitionで解決したから不要 */
-// // コンストラクタ
-// const ColorObj = function(r,g,b){
-//     this.red = r,
-//     this.green = g,
-//     this.blue = b
-// };
-// // 色の比較メソッド
-// const hikaku = function(ColorObj1, ColorObj2){
-//     const sabunRed = ColorObj1.red - ColorObj2.red;
-//     const sabunGreen = ColorObj1.green - ColorObj2.green;
-//     const sabunBlue = ColorObj1.blue - ColorObj2.blue;
-//     return new ColorObj(sabunRed, sabunGreen, sabunBlue);
-// };
-
-// const backColorGoal = new ColorObj("175", "238", "238");
-// let backColorStart = new ColorObj("255", "228", "225");
-// let sabun = hikaku(backColorGoal,backColorStart);
-// let sabun1 = hikaku(backColorGoal,backColorStart);
-// console.log("sabun:" + sabun.red);
-/******************* ColorObject *******************/
-
 /******************* scroll event *******************/
 $(window).scroll(function() {
     const currentY = Math.floor(window.scrollY); // スクロール位置
-
-    // if(currentY > $("main").offset().top){
-    //     console.log("aaaaaaaaaaaaaa");
-    // }
     
     // スクロールとともに文字がずれる疑似アニメーション
     if(charMinY < currentY && currentY < charMaxY){
@@ -146,6 +118,15 @@ $(window).scroll(function() {
             $(e).css("transform", "translateY(" + Math.floor(maxTranY*per)*(-1) + "px)");
             $(e).css("opacity", 1-per);
         })
+    }
+    // プロフィール部分を表示
+    if(!displayProfileflg){
+        if(profileY - winH*0.85 < currentY){
+            // 表示位置を超えていたら
+            $(".profile").removeClass("defaultHidden");
+            // removeClass処理を繰り返さないように
+            displayProfileflg = true;
+        }
     }
     // 一定の位置で背景色を変化
     if(baseScrollPoint < currentY){

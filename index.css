@@ -60,18 +60,29 @@ main{
     min-height: 85vh;
     text-align: center;
 }
+.message{
+    font-family: "Sawarabi Mincho"; /* web font */
+    font-size: 70%;
+    color: #bbb;
+}
 /* PC */
 @media screen and (min-width:769px) {
     main{
         display: grid;
         grid-template:
+            "..... ........ ........ ........ ....." 10vh
+            ".....   space    space   space   ....." 10vh
             "..... article1 article2 article3 ....." 25vh
             "..... article4 article5 article6 ....." 25vh
             "..... article7 article8 article9 ....." 25vh
+            "..... ........ ........ ........ ....." 10vh
             /12.5vw 25vw 25vw 25vw 12.5vw;
     }
     .wrapper{
         height: 100%;
+    }
+    .message{
+        grid-area: space;
     }
     .art-1{
         grid-area: article1;
@@ -122,6 +133,10 @@ main{
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
+    }
+    .message{
+        padding: 0 20vw;
+        height: 22.5vh;
     }
     .wrapper{
         width: 55%;
@@ -245,6 +260,21 @@ footer{
   -moz-animation: devAnime 3s infinite;
   -o-animation: devAnime 3s infinite;
   animation: devAnime 3s infinite;
+}
+
+/* PC想定画面Util */
+@media screen and (min-width:769px) {
+    /* pc想定画面では表示しない */
+    .spDisplayOnly{
+        display: none !important;
+    }
+}
+/* SP想定画面Util */
+@media screen and (max-width:768px) {
+    /* sp想定画面では表示しない */
+    .pcDisplayOnly{
+        display: none !important;
+    }
 }
 
 /******************* css animation *******************/

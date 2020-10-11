@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <title>WelcomePage</title>
     <link href="https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="WelcomePage.css">
 </head>
@@ -53,12 +54,10 @@
             <nav class="target navi">
                 <h1>menu</h1>
                 <ul>
-                    <li>なにか</li>
-                    <li>メニューを</li>
-                    <li>つくる</li>
+                    <li><a href="../index.html" tabIndex="-1">Go To Gallery</a></li>
                 </ul>
                 <div class="menuMessage">
-                    <div class="lsatModified">Lsat Modified: 2020/08/02</div>
+                    <div class="lsatModified">Lsat Modified: 2020/10/11</div>
                     <div class="madeBy">Made By: ma</div>
                     <svg>
                         <rect x="0" y="0" fill="none" width="100%" height="100%"/>
@@ -68,15 +67,20 @@
         </div>
     </menu>
     <!--------------- Main ---------------->
-    <main>
+    <main id="main">
         <div class="topPage">
             <div class="flexInline">
                 <div>
-                    No Content
+                    I think Japanese people tend to think a sentence written in English is cool.
+                    <br>So I write worthless sentence in English.
                 </div>
             </div>
             <div class="flexInline">
-                No Content
+                Egg is "egg"
+                <br>It is so worthless sentence.
+                <br>
+                <br>Under this sentence, you can look "Welcome Page".
+                <br>It has a function that move each character if you scroll down or scroll up. 
             </div>
             <div class="scrollWelcomeWrap">
                 <div class="scrollWelcome" id="top">
@@ -95,8 +99,55 @@
                 </div>
             </div>
         </div>
-        <div class="hima-message" style="height: 100vh;">暇つぶし</div>
-        <h1>himatsubushi</h1>
+        <div class="profile baseY_Up defaultHidden tran1s" style="height: 50vh;">
+            <div>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <td></td>
+                        <td>ma</td>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">BackGround</th>
+                        <td><span class="underline">student</span></td>
+                        <td>Majoring in economics</td>
+                    </tr>
+                    <tr>
+                        <td><span class="underline">worker</span></td>
+                        <td>Develop/fix insurance system</td>
+                    </tr>
+                    <tr>
+                        <th rowspan="3">Hobbys</th>
+                        <td></td>
+                        <td>Basketball</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Leather craft</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Sewing</td>
+                    </tr>              
+                </table>
+            </div>
+            <div></div>
+        </div>
+        <div class="flexInline">
+            <div>
+                No Content
+            </div>
+        </div>
+        <div class="flexInline baseY_Down">
+            <div>
+                No Content
+            </div>
+        </div>
+        <div class="flexInline">
+            <div>
+                No Content
+            </div>
+        </div>
         <div class="flexInline">
             <div>
                 No Content
@@ -107,10 +158,9 @@
                 No Content
             </div>
         </div>
-        <div class="hima3">何も内容は考えてない</div>
         <div class="flexInline">
             <div>
-                No Content
+                何も内容は考えてない
             </div>
         </div>
         <div class="flexInline">
@@ -118,26 +168,27 @@
                 No Content
             </div>
         </div>
-        <div class="hima12">開発中</div>
+        <div class="flexInline">
+            <div>
+                開発中
+            </div>
+        </div>
     </main>
     <!--------------- Footer --------------->
     <footer>
         <ul>
-            <li>XXX</li>
-            <li>YYY</li>
-            <li>ZZZ</li>
-            <li>ABC</li>
-            <li>DEF</li>
+            <li><a href="../index.html">Gallery</a></li>
+            <li><a href="#main">TopPage</a></li>
         </ul>
     </footer>
     <!--------------- Ending --------------->
-    <div id="ending">
+    <!-- <div id="ending">
         <div id="ed-content">
             <div id="ed-message">
                 Good-Bye
             </div>
         </div>
-    </div>
+    </div> -->
     <script src="WelcomePage.js"></script>
 </body>
 </html>
