@@ -226,6 +226,12 @@ menu nav svg{
         margin-left: auto;
     }
 }
+.profile caption{
+    color:orange;
+    text-align: left;
+    font-weight: bold;
+    
+}
 .flexInline{
     /* flex-direction: row; */
     /* border: white 5px solid; */
