@@ -216,7 +216,7 @@ menu nav svg{
 }
 .topMessage svg g line{
     fill: none;
-    stroke: #FFCC00	; /*線の色を指定する*/
+    stroke: orange	; /*線の色を指定する*/
 }
 /* PC */
 @media screen and (min-width:769px) {
