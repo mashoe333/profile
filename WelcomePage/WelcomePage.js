@@ -10,9 +10,13 @@ let charMaxY = 0; // スクロールアニメーションで文字をずらす�
 let bgChangeBaseY_Down = 0; // スクロールダウンで背景色を変更する基準位置：オープニング後に初期化
 let bgChangeBaseY_Up = 0; // スクロールアップで背景色を変更する基準位置：オープニング後に初期化
 let profileY = 0; // スクロールダウンで表示するプロフィール部分の基準位置：オープニング後に初期化
+let experienceY = 0; // スクロールダウンで表示する経験部分の基準位置：オープニング後に初期化
+let interestsY = 0; // スクロールダウンで表示する興味部分の基準位置：オープニング後に初期化
 let baseScrollPoint; // スクロール基準位置
 let scrollDirFlg = true; // スクロールの背景色変更用フラグ（連続で同じ処理をしないように）
 let displayProfileflg = false; // プロフィール表示フラグ（連続で同じ処理をしないように）
+let displayExperienceflg = false; // 経験表示フラグ（連続で同じ処理をしないように）
+let displayInterestsflg = false; // 興味表示フラグ（連続で同じ処理をしないように）
 
 // 画面表示完了後の値で初期化
 // これ必要？→オープニングの終わりで初期化してるから不要じゃない？ start
@@ -98,6 +102,8 @@ const openingEnd = function(){
     bgChangeBaseY_Down = $(".baseY_Down").offset().top;
     bgChangeBaseY_Up = $(".baseY_Up").offset().top;
     profileY = $(".profile").offset().top;
+    experienceY = $(".experience").offset().top;
+    interestsY = $(".interests").offset().top;
     $(".scrollStop").removeClass("scrollStop"); // IE,iOS対応
     $("header").removeClass("hidden");
     // transformを初期化しないとHeaderのposition:fixedが効かない
@@ -129,6 +135,24 @@ $(window).scroll(function() {
             $(".profile").removeClass("defaultHidden");
             // removeClass処理を繰り返さないように
             displayProfileflg = true;
+        }
+    }
+    // 経験部分を表示
+    if(!displayExperienceflg){
+        if(experienceY - winH*0.85 < currentY){
+            // 表示位置を超えていたら
+            $(".experience").removeClass("defaultHidden");
+            // removeClass処理を繰り返さないように
+            displayExperienceflg = true;
+        }
+    }
+    // 興味部分を表示
+    if(!displayInterestsflg){
+        if(interestsY - winH*0.85 < currentY){
+            // 表示位置を超えていたら
+            $(".interests").removeClass("defaultHidden");
+            // removeClass処理を繰り返さないように
+            displayInterestsflg = true;
         }
     }
     // 一定の位置で背景色を変化
