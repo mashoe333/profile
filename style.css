@@ -206,6 +206,15 @@ body {
     height: 380vh;
 }
 
+/* Mobile: Reduce scroll distance to prevent over-expansion while ensuring Future label visibility */
+@media (max-width: 768px) {
+    .scroll-spacer {
+        /* Future planet at Z=13000, need to reach around Z=11500 for label visibility
+           Z=11500 / 3.5 = ~3286px scroll, with intro = ~320vh total */
+        height: 320vh;
+    }
+}
+
 .footer {
     position: fixed;
     bottom: 0;
