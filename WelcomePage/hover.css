@@ -1,9 +1,0 @@
-/********** opening ************/
-#op-content:hover .op-button{
-    transition: all .5s ease;
-    opacity: 1;
-}
-#op-content:hover .op-click{
-    transition: all .5s ease;
-    opacity: 0;
-}

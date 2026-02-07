@@ -1,164 +1,139 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery</title>
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="index.css">
-    <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
+    <title>mamoru | Profile</title>
+    <meta name="description" content="好きなこと、作ったもの、これからのこと">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <script src="js/jquery-min.js"></script>
-    <header>
-        <!-- Gallery -->
-        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="50vw" height="10vh" viewBox="0 0 205.000000 91.000000" preserveAspectRatio="xMidYMid meet">
-            <g transform="translate(0.000000,91.000000) scale(0.050000,-0.050000)" fill="#000000" stroke="none">
-                <path d="M1806 1497 c-80 -18 -83 -22 -74 -83 6 -35 -9 -163 -32 -284 -115
-                -604 -111 -565 -70 -610 46 -51 98 -50 207 6 99 51 109 86 22 79 -76 -7 -76
-                -5 12 429 96 471 92 498 -65 463z"/>
-                <path d="M2230 1510 c-11 -3 -45 -12 -75 -19 -51 -11 -55 -19 -56 -116 0 -58
-                -30 -253 -67 -435 -89 -445 -58 -527 160 -418 123 61 144 109 41 90 -91 -17
-                -91 -37 -5 373 101 480 101 558 2 525z"/>
-                <path d="M490 1443 c-312 -149 -417 -670 -166 -822 72 -44 176 -53 237 -20 34
-                18 39 14 39 -29 0 -42 -12 -50 -85 -63 -286 -47 -367 -309 -96 -309 189 0 307
-                162 392 535 58 258 58 245 11 245 -23 0 -47 -24 -63 -65 -132 -331 -381 -264
-                -353 96 17 226 104 369 225 369 68 0 69 -1 69 -88 0 -94 22 -111 145 -112 107
-                0 88 159 -29 246 -76 57 -227 65 -326 17z m70 -1025 c0 -43 -119 -141 -163
-                -134 -92 13 -61 85 55 126 96 35 108 36 108 8z"/>
-                <path d="M1128 1091 c-88 -38 -142 -117 -169 -245 -57 -274 73 -444 250 -327
-                58 38 59 38 86 0 36 -51 97 -49 193 6 88 50 96 87 18 81 l-52 -4 13 135 c7 74
-                26 179 42 233 36 119 40 115 -115 120 -69 3 -144 10 -165 16 -21 7 -67 0 -101
-                -15z m202 -109 c-21 -54 -50 -224 -50 -294 0 -68 -66 -112 -119 -79 -56 35
-                -10 331 61 394 47 42 126 26 108 -21z"/>
-                <path d="M2573 1091 c-308 -111 -322 -613 -17 -611 65 1 204 62 240 105 40 48
-                -5 62 -78 24 -80 -41 -154 -23 -179 44 -11 29 -18 54 -15 56 3 2 57 19 120 38
-                190 57 276 211 171 307 -61 57 -150 70 -242 37z m104 -108 c11 -81 -15 -141
-                -76 -173 -83 -42 -87 -39 -72 44 31 164 130 250 148 129z"/>
-                <path d="M3275 1085 c-30 -19 -55 -41 -55 -50 0 -8 -9 -15 -20 -15 -11 0 -20
-                18 -20 40 0 35 -13 40 -98 40 -149 0 -166 -11 -126 -79 30 -52 29 -70 -12
-                -263 -58 -272 -61 -258 52 -258 l96 0 34 215 c37 237 78 306 131 226 53 -78
-                181 9 152 102 -25 81 -55 91 -134 42z"/>
-                <path d="M3465 1087 c-14 -6 -25 -43 -25 -82 0 -40 -14 -147 -31 -240 -48
-                -254 33 -331 237 -227 61 31 74 33 74 9 0 -57 -40 -104 -100 -117 -211 -46
-                -231 -230 -25 -230 186 0 268 153 334 622 17 117 36 227 43 245 10 28 -2 33
-                -79 33 -113 0 -116 -4 -142 -249 -21 -192 -25 -202 -78 -228 -94 -45 -106 -10
-                -67 194 54 283 26 337 -141 270z m203 -735 c-17 -44 -122 -99 -138 -72 -19 30
-                8 61 77 90 72 30 79 28 61 -18z"/>
-            </g>
-        </svg>
-    </header>
-    <!-- svg -->
-    <main>
-        <!-- スペース -->
-        <div class="message">
-            暇つぶしで作成している静的ページ集です。<br>何か作りたいページがあったら連絡してください。
+    <canvas id="universe-canvas"></canvas>
+
+    <header class="hud">
+        <div class="brand">
+            <div class="brand-main">PROFILE</div>
+            <div class="brand-sub">mamoru</div>
         </div>
-        <div class="spDisplayOnly message">
-            I develop static pages to kill time.<br>But I can't come up with an idea. Please contact me if you have any ideas!
+        <nav class="nav-menu">
+            <a href="#aboutme">ABOUT ME</a>
+            <a href="#works">WORKS</a>
+            <a href="#future">FUTURE</a>
+        </nav>
+        <div class="coords">
+            <span>Z:</span>
+            <span id="z-display">0</span>
+        </div>
+    </header>
+
+    <main>
+        <section id="intro" class="intro-section">
+            <div class="intro-content">
+                <h1 class="main-title">こんちはー！</h1>
+                <p class="intro-text">
+                    好きなこと、作ったもの、これからのこと<br>
+                    ゆっくり見ていってください
+                </p>
+                <div class="scroll-hint">
+                    <span>SCROLL</span>
+                    <div class="arrow">↓</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Foreground Planet Labels -->
+        <div id="fg-label-genesis" class="fg-planet-label">
+            <div class="fg-label-num">01</div>
+            <h2>ABOUT ME</h2>
+            <p class="fg-label-sub">私について</p>
         </div>
 
-        <!-- No.1 -->
-        <div class="art-1 welcomePage canDisplay">
-            <div class="wrapper">
-                <a href="WelcomePage/">
-                    <span class="target">
-                        <img src="images/WelcomePage.svg" alt="Welcome Page">
-                        <br>
-                        ～&nbsp;In Develop&nbsp;～
-                    </span>
-                    <svg>
-                        <rect x="0" y="0" fill="none" width="100%" height="100%"/>
-                    </svg>
-                </a>
+        <div id="fg-label-paradox" class="fg-planet-label">
+            <div class="fg-label-num">02</div>
+            <h2>WORKS</h2>
+            <p class="fg-label-sub">作ったもの</p>
+        </div>
+
+        <div id="fg-label-horizon" class="fg-planet-label">
+            <div class="fg-label-num">03</div>
+            <h2>FUTURE</h2>
+            <p class="fg-label-sub">これから</p>
+        </div>
+
+        <div class="scroll-spacer"></div>
+
+        <!-- Modal Popups -->
+        <div id="modal-aboutme" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="modal-aboutme">&times;</span>
+                <h2 class="modal-title">ABOUT ME</h2>
+                <div class="modal-body">
+                    <ul>
+                        <li>職業: System Engineer</li>
+                        <li>スキル
+                            <ul class="nested-list">
+                                <li>Salesforce開発</li>
+                            </ul>
+                        </li>
+                        <li>趣味
+                            <ul class="nested-list">
+                                <li>バスケ</li>
+                                <li>ものづくり</li>
+                                <li>投資</li>
+                            </ul>
+                        </li>
+                        <li>時間あったらやりたいこと
+                            <ul class="nested-list">
+                                <li>Blenderで3DCG作成</li>
+                                <li>MadMapperでプロジェクションマッピングの作成</li>
+                                <li>洋服づくり</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <!-- No.2 -->
-        <div class="art-2">
-            <div class="wrapper inDev">
-                <a href="javaScript:void(0)">
-                    <span>#2</span>
-                    <br>
-                    <span class="target">coming soon</span>
-                </a>
+
+        <div id="modal-works" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="modal-works">&times;</span>
+                <h2 class="modal-title">WORKS</h2>
+                <div class="modal-body">
+                    <ul>
+                        <li>これから追加していきます...！</li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <!-- No.3 -->
-        <div class="art-3">
-            <div class="wrapper inDev">
-                <a href="javaScript:void(0)">
-                    <span>#3</span>
-                    <br>
-                    <span class="target">coming soon</span>
-                </a>
-            </div>
-        </div>
-        <!-- No.4 -->
-        <div class="art-4">
-            <div class="wrapper">
-                <a href="javaScript:void(0)">
-                    <span>#4</span>
-                    <br>
-                    <span class="target">need your ideas</span>
-                </a>
-            </div>
-        </div>
-        <!-- No.5 -->
-        <div class="art-5">
-            <div class="wrapper">
-                <a href="javaScript:void(0)">
-                    <span>#5</span>
-                    <br>
-                    <span class="target">need your ideas</span>
-                </a>
-            </div>
-        </div>
-        <!-- No.6 -->
-        <div class="art-6">
-            <div class="wrapper">
-                <a href="javaScript:void(0)">
-                    <span>#6</span>
-                    <br>
-                    <span class="target">need your ideas</span>
-                </a>
-            </div>
-        </div>
-        <!-- No.7 -->
-        <div class="art-7">
-            <div class="wrapper">
-                <a href="javaScript:void(0)">
-                    <span>#7</span>
-                    <br>
-                    <span class="target">need your ideas</span>
-                </a>
-            </div>
-        </div>
-        <!-- No.8 -->
-        <div class="art-8">
-            <div class="wrapper">
-                <a href="javaScript:void(0)">
-                    <span>#8</span>
-                    <br>
-                    <span class="target">need your ideas</span>
-                </a>
-            </div>
-        </div>
-        <!-- No.9 -->
-        <div class="art-9">
-            <div class="wrapper">
-                <a href="javaScript:void(0)">
-                    <span>#9</span>
-                    <br>
-                    <span class="target">need your ideas</span>
-                </a>
+
+        <div id="modal-future" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="modal-future">&times;</span>
+                <h2 class="modal-title">FUTURE</h2>
+                <div class="modal-body">
+                    <ul>
+                        <li>目標: 強そうな人になる</li>
+                        <li>Trailhead: https://trailhead.salesforce.com/ja/me/mashoe</li>
+                        <li>GitHub: https://github.com/mashoe</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </main>
-    <!-- footer -->
-    <footer>
-        <div>Last Modified: 2020/10/11</div>
-        <div>Made By: ma</div>
+
+
+    <footer class="footer">
+        <p>Last Updated: 2026.02.07 | mamoru</p>
     </footer>
-    <script src="index.js"></script>
+
+    <script src="script.js?v=23"></script>
 </body>
+
 </html>
