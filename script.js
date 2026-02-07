@@ -5,7 +5,7 @@
 
 const canvas = document.getElementById('universe-canvas');
 const ctx = canvas.getContext('2d');
-const zDisplay = document.getElementById('z-display');
+
 
 let width, height;
 let mouseX = 0, mouseY = 0;
@@ -186,15 +186,30 @@ const fgPlanets = [
 
 const stars = [];
 for (let i = 0; i < 800; i++) {
+    const shimmerType = Math.random();
+    const isLargeStar = i < 80; // First 80 stars are larger (10% of 800)
+
     stars.push({
         x: (Math.random() - 0.5) * 5000,
         y: (Math.random() - 0.5) * 5000,
         z: Math.random() * 15000,
-        size: Math.random() * 1.5 + 0.5,
+        size: isLargeStar ? (Math.random() * 3.5 + 3.5) : (Math.random() * 1.5 + 0.5),
         brightness: Math.random() * 0.5 + 0.5,
         twinklePhase: Math.random() * Math.PI * 2,
-        twinkleSpeed: Math.random() * 2 + 1
+        twinkleSpeed: Math.random() * 2 + 1,
+        // Shimmer properties
+        shimmerType: shimmerType < 0.6 ? 0 : (shimmerType < 0.85 ? 1 : 2), // 60% normal, 25% pulse, 15% flash
+        shimmerIntensity: Math.random() * 0.5 + 0.5,
+        secondaryTwinklePhase: Math.random() * Math.PI * 2,
+        secondaryTwinkleSpeed: Math.random() * 1.5 + 0.5,
+        flashInterval: Math.random() * 5 + 3 // For flash type: 3-8 seconds between flashes
     });
+}
+
+// Shuffle stars array to randomize which ones are large
+for (let i = stars.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [stars[i], stars[j]] = [stars[j], stars[i]];
 }
 
 // ==========================================
@@ -210,7 +225,7 @@ function render() {
     const centerY = height / 2;
 
     camera.z = window.scrollY * Z_SCROLL_FACTOR;
-    zDisplay.textContent = Math.floor(camera.z);
+
 
     // Fade out intro section on scroll
     const introSection = document.querySelector('.intro-section');
@@ -259,13 +274,58 @@ function render() {
         const py = centerY + star.y * scale;
 
         if (px > -50 && px < width + 50 && py > -50 && py < height + 50) {
-            const twinkle = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(time * star.twinkleSpeed + star.twinklePhase));
-            const alpha = star.brightness * twinkle * Math.min(1, rz / 1000);
+            // Calculate shimmer based on type
+            let shimmer = 1;
 
-            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+            if (star.shimmerType === 0) {
+                // Normal: smooth sine wave with secondary frequency
+                const primary = 0.5 + 0.5 * Math.sin(time * star.twinkleSpeed + star.twinklePhase);
+                const secondary = 0.5 + 0.5 * Math.sin(time * star.secondaryTwinkleSpeed + star.secondaryTwinklePhase);
+                shimmer = 0.3 + 0.7 * (primary * 0.7 + secondary * 0.3);
+            } else if (star.shimmerType === 1) {
+                // Pulse: sharp peaks with quick fade
+                const pulse = Math.sin(time * star.twinkleSpeed + star.twinklePhase);
+                shimmer = 0.2 + 0.8 * Math.pow(Math.max(0, pulse), 3);
+            } else {
+                // Flash: random bright flashes
+                const flashCycle = (time % star.flashInterval) / star.flashInterval;
+                if (flashCycle < 0.1) {
+                    // Flash for 10% of the interval
+                    shimmer = 0.5 + 0.5 * Math.sin(flashCycle * Math.PI * 10);
+                } else {
+                    shimmer = 0.3 + 0.2 * Math.sin(time * star.twinkleSpeed + star.twinklePhase);
+                }
+            }
+
+            shimmer *= star.shimmerIntensity;
+            const alpha = star.brightness * shimmer * Math.min(1, rz / 1000);
+
+            // Add slight color variation for larger stars
+            const isLarge = star.size > 2.5;
+            if (isLarge) {
+                const colorShift = Math.sin(time * 0.5 + star.twinklePhase) * 20;
+                ctx.fillStyle = `rgba(${Math.min(255, 255 + colorShift)}, ${Math.min(255, 255 + colorShift * 0.8)}, 255, ${alpha})`;
+            } else {
+                ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+            }
+
             ctx.beginPath();
             ctx.arc(px, py, star.size * Math.max(0.3, scale * 0.5), 0, Math.PI * 2);
             ctx.fill();
+
+            // Add glow effect for larger stars
+            if (isLarge && alpha > 0.5) {
+                ctx.save();
+                ctx.globalAlpha = alpha * 0.3;
+                ctx.beginPath();
+                ctx.arc(px, py, star.size * Math.max(0.3, scale * 0.5) * 2, 0, Math.PI * 2);
+                const gradient = ctx.createRadialGradient(px, py, 0, px, py, star.size * Math.max(0.3, scale * 0.5) * 2);
+                gradient.addColorStop(0, 'rgba(200, 220, 255, 0.8)');
+                gradient.addColorStop(1, 'rgba(200, 220, 255, 0)');
+                ctx.fillStyle = gradient;
+                ctx.fill();
+                ctx.restore();
+            }
         }
     });
 
@@ -533,6 +593,8 @@ Object.keys(modals).forEach(labelId => {
             const opacity = parseFloat(labelEl.style.opacity) || 0;
             if (opacity > 0.5) {
                 modalEl.classList.add('active');
+                // Lock body scroll
+                document.body.style.overflow = 'hidden';
             }
         });
     }
@@ -545,6 +607,8 @@ document.querySelectorAll('.modal-close').forEach(closeBtn => {
         const modalEl = document.getElementById(modalId);
         if (modalEl) {
             modalEl.classList.remove('active');
+            // Unlock body scroll
+            document.body.style.overflow = '';
         }
     });
 });
@@ -554,6 +618,8 @@ document.querySelectorAll('.modal').forEach(modal => {
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.classList.remove('active');
+            // Unlock body scroll
+            document.body.style.overflow = '';
         }
     });
 });
@@ -564,6 +630,8 @@ document.addEventListener('keydown', (e) => {
         document.querySelectorAll('.modal.active').forEach(modal => {
             modal.classList.remove('active');
         });
+        // Unlock body scroll
+        document.body.style.overflow = '';
     }
 });
 
