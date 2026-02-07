@@ -188,6 +188,15 @@ body {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-cyan);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 8px;
+}
+
+.fg-planet-label:hover h2 {
+    text-decoration-color: var(--accent-green);
+    text-decoration-thickness: 3px;
 }
 
 .fg-label-sub {
